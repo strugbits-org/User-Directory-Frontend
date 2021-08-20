@@ -8,7 +8,7 @@ import {
     },
     card: {
         width: '27%', 
-        margin: '0px 0px 0px 55%',
+        // margin: '0px 0px 0px 55%',
         position: 'absolute',
         top: '10%'
     },
@@ -26,10 +26,12 @@ import {
       width: '90%',
     },
     checkBox: {
-      margin: '4% 0 0 20%'
+      margin: '4% 0 0 20%',
+      color: 'rgba(0, 0, 0, 0.54)'
     },
     link: {
       cursor: 'pointer',
+      color: 'rgba(0, 0, 0, 0.54)'
     },
     loginBtn: {
       padding: '15px',
@@ -53,7 +55,18 @@ import {
     },
     cardFooter:{
       backgroundColor: '#4350a5',
-      height: '70px'
+      height: '45px',
+      display: 'flex',
+      paddingTop: '5%',
+    },
+    cardFooterTypo:{
+      color: 'white',
+      textAlign: 'center',
+    },
+    cardFooterTypo2: {
+      fontWeight: 900,
+      textAlign: 'center',
+      textDecoration: 'underline'
     }
   });
   
