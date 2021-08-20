@@ -47,7 +47,8 @@ const LoginPageComp = () => {
                                 className={classes.appleBtn}
                                 startIcon={<AppleIcon />}
                             >
-                                Apple Store
+                                {/* <span style={{ fontSize: '9px' }}>Download on</span> &nbsp; < br/> */}
+                                App Store
                             </Button>
                             <Button
                                 variant="contained"
@@ -66,7 +67,7 @@ const LoginPageComp = () => {
                     <Card>
                         <Grid container spacing={1}>
                             <Grid item xs={12}>
-                            <div className={classes.cardHeader}></div>
+                                <div className={classes.cardHeader}></div>
                             </Grid>
                             <Grid item xs={12}>
                                 <Typography className={classes.cardHeaderTypo}>
@@ -105,13 +106,13 @@ const LoginPageComp = () => {
                             <Grid item xs={12}>
                                 <div className={classes.socialCont}>
                                     <div className={classes.socialIcons}>
-                                        <img src={facebook} style={{ height: '50px' }} alt="facebook" />
+                                        <img src={facebook} style={{ height: '43px' }} alt="facebook" />
                                     </div>
                                     <div className={classes.socialIcons}>
-                                        <img src={twitter} style={{ height: '50px' }} alt="facebook" />
+                                        <img src={twitter} style={{ height: '43px' }} alt="facebook" />
                                     </div>
                                     <div className={classes.socialIcons}>
-                                    <img src={google} style={{ height: '50px' }} alt="facebook" />
+                                    <img src={google} style={{ height: '43px' }} alt="facebook" />
                                     </div>
                                 </div>
                             </Grid>

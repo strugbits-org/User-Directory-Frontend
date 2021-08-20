@@ -12,8 +12,8 @@ import {
         top: '10%'
     },
     cardHeader: {
-      backgroundColor: '#4350a5',
-      height: '10px'
+      backgroundImage: 'linear-gradient(to right, #6075cb, #090979)',
+      height: '15px'
     },
     cardHeaderTypo: {
       fontSize: '22px',
@@ -36,6 +36,7 @@ import {
       padding: '15px',
       margin: '4% 0 2% 12%',
       width: '40%',
+      backgroundImage: 'linear-gradient(to right, #6075cb, #090979)',
     },
     socialTypo: {
       margin: '3% 0 0 12%',
@@ -43,21 +44,21 @@ import {
     },
     socialCont: {
       display: 'flex', 
-      height: '50px', 
+      height: '43px', 
       justifyContent: 'space-evenly', 
       margin: '1% 0 4% 8%', 
       width: '55%',
     },
     socialIcons: {
       flex:'0.2',  
-      backgroundColor: '#0632b0',
       cursor: 'pointer',
     },
     cardFooter:{
-      backgroundColor: '#4350a5',
+      // backgroundColor: '#4350a5',
       height: '45px',
       display: 'flex',
       paddingTop: '5%',
+      backgroundImage: 'linear-gradient(to right, #6075cb, #090979)'
     },
     cardFooterTypo:{
       color: 'white',
@@ -84,15 +85,16 @@ import {
       borderBottomLeftRadius: '20px',
       borderTopRightRadius: '20px',
       borderBottomRightRadius: '20px',
+      '&:hover': {
+        backgroundColor: '#ffb55d'
+      }
     },
     googleBtn: {
       borderTopLeftRadius: '20px',
       borderBottomLeftRadius: '20px',
       borderTopRightRadius: '20px',
       borderBottomRightRadius: '20px',
-      '&:hover': {
-        backgroundColor: '#ffb55d'
-      }
+      backgroundImage: 'linear-gradient(to right, #6075cb, #090979)',
     },
     dotsImage: {
       height: '100%',
