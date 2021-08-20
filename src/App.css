@@ -1,0 +1,11 @@
+.bg-image {
+  height: 753px;
+  position: relative;
+}
+.bubble-image {
+  position: absolute;
+  height: 42%;
+  width: 100%;
+  background-repeat: no-repeat;
+  top: 437px;
+}
