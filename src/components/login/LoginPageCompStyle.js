@@ -8,7 +8,6 @@ import {
     },
     card: {
         width: '27%', 
-        // margin: '0px 0px 0px 55%',
         position: 'absolute',
         top: '10%'
     },
@@ -51,7 +50,8 @@ import {
     },
     socialIcons: {
       flex:'0.2',  
-      backgroundColor: '#0632b0'
+      backgroundColor: '#0632b0',
+      cursor: 'pointer',
     },
     cardFooter:{
       backgroundColor: '#4350a5',
@@ -67,6 +67,36 @@ import {
       fontWeight: 900,
       textAlign: 'center',
       textDecoration: 'underline'
+    },
+    greatAppTypo: {
+      color: 'rgba(65, 80, 138, 255)',
+      fontSize: '40px'
+    },
+    subHeadTypo: {
+      fontSize: '14px',
+      color: 'rgba(122, 127, 147, 255)',
+      marginBottom: '8%'
+    },
+    appleBtn: {
+      marginRight: '2%',
+      backgroundColor: '#ffb55d',
+      borderTopLeftRadius: '20px',
+      borderBottomLeftRadius: '20px',
+      borderTopRightRadius: '20px',
+      borderBottomRightRadius: '20px',
+    },
+    googleBtn: {
+      borderTopLeftRadius: '20px',
+      borderBottomLeftRadius: '20px',
+      borderTopRightRadius: '20px',
+      borderBottomRightRadius: '20px',
+      '&:hover': {
+        backgroundColor: '#ffb55d'
+      }
+    },
+    dotsImage: {
+      height: '100%',
+      backgroundRepeat: 'no-repeat',
     }
   });
   

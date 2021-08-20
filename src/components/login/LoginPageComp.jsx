@@ -13,6 +13,9 @@ import ArrowRightTwoToneIcon from '@material-ui/icons/ArrowRightTwoTone';
 import facebook from "../../assets/facebook.jpg";
 import twitter from "../../assets/twitter.jpg";
 import google from "../../assets/google.jpg";
+import AppleIcon from '@material-ui/icons/Apple';
+import dotsImage from "../../assets/leftDots.png";
+import blueDotsImage from "../../assets/dotsBlue.png";
 
 const LoginPageComp = () => {
     const classes = useStyles();
@@ -20,13 +23,45 @@ const LoginPageComp = () => {
     return(
         <div>
             <Grid container>
-                <Grid item xs={1}>
-
+                <Grid style={{ marginTop: '3%' }} item xs={2}>
+                    <div className={classes.dotsImage} style={{ backgroundImage: `url(${dotsImage})` }} />
                 </Grid>
-                <Grid item xs={6}>
-
+                <Grid item xs={5}>
+                <div className={classes.dotsImage} style={{ backgroundImage: `url(${blueDotsImage})` }} >
+                    <div style={{ margin: '20% 0 0 0', width: '80%' }}>
+                        <div>
+                        <Typography className={classes.greatAppTypo}>
+                            Great app that makes your business easier
+                        </Typography>
+                        </div>
+                        <div style={{ margin: '10% 0 0 0' }}>
+                        <Typography className={classes.subHeadTypo}>
+                            Excepteur sint occaecat cupidatat non proident sunt in culpa qui 
+                            officia deserunt mollit lorem ipsum anim id est laborum perspiciatis unde.
+                        </Typography>
+                        </div>
+                        <div>
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                className={classes.appleBtn}
+                                startIcon={<AppleIcon />}
+                            >
+                                Apple Store
+                            </Button>
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                className={classes.googleBtn}
+                                startIcon={<ArrowRightTwoToneIcon />}
+                            >
+                                Google Play
+                            </Button>
+                        </div>
+                    </div>
+                </div>
                 </Grid>
-                <Grid item xs={4}>
+                <Grid item xs={3}>
                     <div className={classes.card}>
                     <Card>
                         <Grid container spacing={1}>
@@ -98,7 +133,7 @@ const LoginPageComp = () => {
                     </Card>
                 </div>
                 </Grid>
-                <Grid item xs={1}>
+                <Grid item xs={2}>
 
                 </Grid>
             </Grid>
