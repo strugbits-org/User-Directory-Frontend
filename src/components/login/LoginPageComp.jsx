@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
 	Typography,
 	Grid,
@@ -16,9 +16,35 @@ import google from "../../assets/google.jpg";
 import AppleIcon from '@material-ui/icons/Apple';
 import dotsImage from "../../assets/leftDots.png";
 import blueDotsImage from "../../assets/dotsBlue.png";
+const axios = require('axios');
 
 const LoginPageComp = () => {
 	const classes = useStyles();
+
+	const [userDetails, setUserDetails] = useState();
+
+	const onChangeHandler = (e) => {
+		const { name, value } = e.target;
+		setUserDetails((prev) => ({ ...prev, [name]: value }));
+	}
+
+	const onClickHandler = async (e) => {
+		e.preventDefault();
+
+		try {
+			const config = {
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			}
+
+			const body = JSON.stringify(userDetails);
+			const resp = await axios.post('/api/user/login', body, config);
+			console.log(resp.data);
+		} catch (err) {
+			console.error(err.response.data);
+		}
+	}
 
 	return (
 		<div>
@@ -75,10 +101,19 @@ const LoginPageComp = () => {
 									</Typography>
 								</Grid>
 								<Grid item xs={11}>
-									<TextFieldComp className={classes.textField} label="User Name" />
+									<TextFieldComp
+										className={classes.textField}
+										label="Email"
+										name="email"
+										onChange={onChangeHandler} />
 								</Grid>
 								<Grid item xs={11}>
-									<TextFieldComp className={classes.textField} label="Password" />
+									<TextFieldComp
+										className={classes.textField}
+										label="Password"
+										name="password"
+										type="password"
+										onChange={onChangeHandler} />
 								</Grid>
 								<Grid item xs={6}>
 									<CheckBoxComp className={classes.checkBox} label="Remember Me" />
@@ -94,6 +129,7 @@ const LoginPageComp = () => {
 										color="primary"
 										className={classes.loginBtn}
 										endIcon={<ArrowRightTwoToneIcon />}
+										onClick={onClickHandler}
 									>
 										LOG IN
 									</Button>
@@ -125,7 +161,7 @@ const LoginPageComp = () => {
 										</div>
 										<div style={{ flex: '0.5' }}>
 											<Typography className={classes.cardFooterTypo2}>
-												<a style={{ color: 'white' }} href="/sign-up"> Sign up now! </a>
+												<a style={{ color: 'white' }} href="/register"> Sign up now! </a>
 											</Typography>
 										</div>
 									</div>

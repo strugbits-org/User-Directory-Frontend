@@ -2,7 +2,7 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 
 const TextFieldComp = ({
-  className, label,
+  className, label, name, onChange, type
 }) => {
 
   return (
@@ -10,6 +10,9 @@ const TextFieldComp = ({
       className={className}
       fullWidth={true}
       label={label}
+      name={name}
+      type={type}
+      onChange={onChange}
       required
     />
   );
