@@ -4,6 +4,7 @@ import bgImage from "./assets/background.png";
 import ftrImage from "./assets/footerBubbles.png";
 import "./App.css";
 import RegisterPageComp from "./components/register/RegisterPageComp";
+import HomePageComp from "./components/home/HomePageComp";
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
         <Switch>
           <Route exact path="/login" component={LoginPageComp} />
           <Route exact path="/register" component={RegisterPageComp} />
+          <Route exact path="/" component={HomePageComp} />
         </Switch>
       </Router>
     </div>

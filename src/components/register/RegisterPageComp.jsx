@@ -3,7 +3,6 @@ import {
   Typography,
   Grid,
   Card,
-  Button,
 } from '@material-ui/core';
 import useStyles from "./RegisterPageCompStyle";
 import TextFieldComp from "../../shared/components/textField/TextFieldComp";
@@ -15,12 +14,17 @@ import AppleIcon from '@material-ui/icons/Apple';
 import dotsImage from "../../assets/leftDots.png";
 import blueDotsImage from "../../assets/dotsBlue.png";
 import axios from 'axios';
-import { useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom';
+import { ApiConfig } from "../../config/ApiConfig";
+import SnackBarComp from "../../shared/components/snackBar/SnackBarComp";
+import ButtonComp from "../../shared/components/button/ButtonComp";
 
 const RegisterPageComp = () => {
   const classes = useStyles();
   const history = useHistory();
-
+  const [respMessage, setRespMessage] = useState();
+  const [statusType, setStatusType] = useState('error');
+  const [open, setOpen] = useState(false);
   const [userDetails, setUserDetails] = useState();
 
   const onChangeHandler = (e) => {
@@ -30,23 +34,18 @@ const RegisterPageComp = () => {
 
   const onClickHandler = async (e) => {
     e.preventDefault();
-
     try {
-      const config = {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      }
-
       const body = JSON.stringify(userDetails);
-      const resp = await axios.post('/api/user/register', body, config);
-      console.log(resp.data);
-      if (resp.data) {
-        setTimeout(() => { history.push('/login') }, 2000);
-      }
+      await axios.post('/api/user/register', body, ApiConfig)
+        .then((resp) => {
+          setStatusType("success");
+          setRespMessage(resp.data.message);
+          setTimeout(() => history.push('/login'), 2000);
+        })
     } catch (err) {
-      console.error(err.response.data);
+      setRespMessage(err.response.data.message);
     }
+    setOpen(true);
   }
 
   return (
@@ -70,112 +69,112 @@ const RegisterPageComp = () => {
                 </Typography>
               </div>
               <div>
-                <Button
-                  variant="contained"
-                  color="primary"
+                <ButtonComp
                   className={classes.appleBtn}
-                  startIcon={<AppleIcon />}
-                >
-                  {/* <span style={{ fontSize: '9px' }}>Download on</span> &nbsp; <br /> */}
+                  startIcon={<AppleIcon />}>
                   App Store
-                </Button>
-                <Button
-                  variant="contained"
-                  color="primary"
+                </ButtonComp>
+                {/* <span style={{ fontSize: '9px' }}>Download on</span> &nbsp; <br /> */}
+                <ButtonComp
                   className={classes.googleBtn}
-                  startIcon={<ArrowRightTwoToneIcon />}
-                >
+                  startIcon={<ArrowRightTwoToneIcon />}>
                   Google Play
-                </Button>
+                </ButtonComp>
               </div>
             </div>
           </div>
         </Grid>
         <Grid item xs={3}>
-          <div className={classes.card}>
-            <Card>
-              <Grid container spacing={1}>
-                <Grid item xs={12}>
-                  <div className={classes.cardHeader}></div>
-                </Grid>
-                <Grid item xs={12}>
-                  <Typography className={classes.cardHeaderTypo}>
-                    Register your account
-                  </Typography>
-                </Grid>
-                <Grid item xs={11}>
-                  <TextFieldComp
-                    className={classes.textField}
-                    label="User Name"
-                    name="name"
-                    onChange={onChangeHandler} />
-                </Grid>
-                <Grid item xs={11}>
-                  <TextFieldComp
-                    className={classes.textField}
-                    label="Email"
-                    name="email"
-                    onChange={onChangeHandler} />
-                </Grid>
-                <Grid item xs={11}>
-                  <TextFieldComp
-                    className={classes.textField}
-                    label="Password"
-                    name="password"
-                    type="password"
-                    onChange={onChangeHandler} />
-                </Grid>
-                <Grid item xs={12}>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    className={classes.registerBtn}
-                    endIcon={<ArrowRightTwoToneIcon />}
-                    onClick={onClickHandler}
-                  >
-                    Register
-                  </Button>
-                </Grid>
-                <Grid item xs={12}>
-                  <Typography className={classes.socialTypo}>
-                    Register with social Media
-                  </Typography>
-                </Grid>
-                <Grid item xs={12}>
-                  <div className={classes.socialCont}>
-                    <div className={classes.socialIcons}>
-                      <img src={facebook} style={{ height: '43px' }} alt="facebook" />
+          <form onSubmit={onClickHandler}>
+            <div className={classes.card}>
+              <Card>
+                <Grid container spacing={1}>
+                  <Grid item xs={12}>
+                    <div className={classes.cardHeader}></div>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Typography className={classes.cardHeaderTypo}>
+                      Register your account
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={11}>
+                    <TextFieldComp
+                      className={classes.textField}
+                      label="User Name"
+                      name="name"
+                      onChange={onChangeHandler} />
+                  </Grid>
+                  <Grid item xs={11}>
+                    <TextFieldComp
+                      className={classes.textField}
+                      label="Email"
+                      name="email"
+                      type="email"
+                      onChange={onChangeHandler} />
+                  </Grid>
+                  <Grid item xs={11}>
+                    <TextFieldComp
+                      className={classes.textField}
+                      label="Password"
+                      name="password"
+                      type="password"
+                      onChange={onChangeHandler} />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <ButtonComp
+                      className={classes.registerBtn}
+                      endIcon={<ArrowRightTwoToneIcon />}
+                      type="submit">
+                      Register
+                    </ButtonComp>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Typography className={classes.socialTypo}>
+                      Register with social Media
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <div className={classes.socialCont}>
+                      <div className={classes.socialIcons}>
+                        <img src={facebook} style={{ height: '43px' }} alt="facebook" />
+                      </div>
+                      <div className={classes.socialIcons}>
+                        <img src={twitter} style={{ height: '43px' }} alt="twitter" />
+                      </div>
+                      <div className={classes.socialIcons}>
+                        <img src={google} style={{ height: '43px' }} alt="google" />
+                      </div>
                     </div>
-                    <div className={classes.socialIcons}>
-                      <img src={twitter} style={{ height: '43px' }} alt="twitter" />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <div className={classes.cardFooter}>
+                      <div style={{ flex: '0.5' }}>
+                        <Typography className={classes.cardFooterTypo}>
+                          Already have a account?
+                        </Typography>
+                      </div>
+                      <div style={{ flex: '0.5' }}>
+                        <Typography className={classes.cardFooterTypo2}>
+                          <a style={{ color: 'white' }} href="/login"> Sign in! </a>
+                        </Typography>
+                      </div>
                     </div>
-                    <div className={classes.socialIcons}>
-                      <img src={google} style={{ height: '43px' }} alt="google" />
-                    </div>
-                  </div>
+                  </Grid>
                 </Grid>
-                <Grid item xs={12}>
-                  <div className={classes.cardFooter}>
-                    <div style={{ flex: '0.5' }}>
-                      <Typography className={classes.cardFooterTypo}>
-                        Already have a account?
-                      </Typography>
-                    </div>
-                    <div style={{ flex: '0.5' }}>
-                      <Typography className={classes.cardFooterTypo2}>
-                        <a style={{ color: 'white' }} href="/login"> Sign in! </a>
-                      </Typography>
-                    </div>
-                  </div>
-                </Grid>
-              </Grid>
-            </Card>
-          </div>
+              </Card>
+            </div>
+          </form>
         </Grid>
         <Grid item xs={2}>
 
         </Grid>
       </Grid>
+      <SnackBarComp
+        open={open}
+        setOpen={setOpen}
+        statusType={statusType}
+        respMessage={respMessage}
+      />
     </div>
   )
 }
