@@ -1,28 +1,21 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import LoginPageComp from "./components/login/LoginPageComp";
-import bgImage from "./assets/background.png";
-import ftrImage from "./assets/footerBubbles.png";
 import "./App.css";
 import RegisterPageComp from "./components/register/RegisterPageComp";
 import HomePageComp from "./components/home/HomePageComp";
 import VerifyEmailPageComp from "./components/verifyEmail/VerifyEmailPageComp";
+// import LayoutComp from "./shared/components/layout/LayoutComp";
 
 const App = () => {
   return (
-    <div className="bg-image" style={{ backgroundImage: `url(${bgImage})` }}>
-      <div
-        className="bubble-image"
-        style={{ backgroundImage: `url(${ftrImage})` }}
-      />
-      <Router>
-        <Switch>
-          <Route exact path="/login" component={LoginPageComp} />
-          <Route exact path="/register" component={RegisterPageComp} />
-          <Route exact path="/" component={HomePageComp} />
-          <Route exact path="/verify-email" component={VerifyEmailPageComp} />
-        </Switch>
-      </Router>
-    </div>
+    <Router>
+      <Switch>
+        <Route exact path="/" component={HomePageComp} />
+        <Route exact path="/login" component={LoginPageComp} />
+        <Route exact path="/register" component={RegisterPageComp} />
+        <Route exact path="/verify-email" component={VerifyEmailPageComp} />
+      </Switch>
+    </Router>
   );
 };
 
