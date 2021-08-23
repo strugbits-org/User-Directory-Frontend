@@ -8,6 +8,7 @@ import logo from "../../assets/logo.png";
 import bgImage from "../../assets/pattern.png";
 import workImage from "../../assets/workImage.png";
 import triangle from "../../assets/traingle.png";
+import chatImage from "../../assets/thumbnail.png";
 import ButtonComp from '../../shared/components/button/ButtonComp';
 import useStyles from "./HomePageCompStyle";
 import { useHistory } from "react-router-dom";
@@ -37,13 +38,13 @@ const HomePageComp = () => {
             <div style={{ width: '80%' }}>
               <div>
                 <Typography className={classes.mainHeadTypo}>
-                  Great app that makes your business easier
+                  We are here to help startups reach their dreams
                 </Typography>
               </div>
               <div style={{ marginTop: '10%' }}>
                 <Typography className={classes.subHeadTypo}>
-                  Excepteur sint occaecat cupidatat non proident sunt in culpa qui
-                  officia deserunt mollit lorem ipsum anim id est laborum perspiciatis unde.
+                  Build a startup is not easy so we want to help you to reach your dream.
+                  You can focus to build the emperor from the inside while we will speak it louder to the worlds
                 </Typography>
               </div>
             </div>
@@ -84,6 +85,12 @@ const HomePageComp = () => {
                 </div>
               </Grid>
             </Grid>
+          </Grid>
+          <Grid item xs={6}>
+            <div className={classes.chatImage} style={{ backgroundImage: `url(${chatImage})` }}></div>
+          </Grid>
+          <Grid>
+
           </Grid>
         </Grid>
       </div>

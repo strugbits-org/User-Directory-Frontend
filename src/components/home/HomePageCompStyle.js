@@ -19,6 +19,11 @@ const useStyles = makeStyles({
     height: "150px",
     backgroundRepeat: "no-repeat",
   },
+  chatImage: {
+    height: "390px",
+    marginTop: "15%",
+    backgroundRepeat: "no-repeat",
+  },
   loginRegisterBtn: {
     borderTopLeftRadius: "20px",
     borderBottomLeftRadius: "20px",
@@ -47,7 +52,7 @@ const useStyles = makeStyles({
   whyFastTypo: {
     color: "#2C2E30",
     fontSize: "25px",
-    marginTop: '2%',
+    marginTop: "2%",
   },
   whyFastSubTypo: {
     fontSize: "15px",
