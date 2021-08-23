@@ -28,6 +28,7 @@ const LoginPageComp = () => {
   const [respMessage, setRespMessage] = useState();
   const [statusType, setStatusType] = useState('error');
   const [open, setOpen] = useState(false);
+  const [snackDuration, setSnackDuration] = useState(0);
 
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
@@ -42,10 +43,12 @@ const LoginPageComp = () => {
         .then((resp) => {
           setStatusType("success");
           setRespMessage(resp.data.message);
+          setSnackDuration(6000);
           setTimeout(() => history.push('/'), 2000);
         })
     } catch (err) {
       setRespMessage(err.response.data.message);
+      setSnackDuration(6000);
     }
     setOpen(true);
   }
@@ -177,6 +180,7 @@ const LoginPageComp = () => {
         setOpen={setOpen}
         statusType={statusType}
         respMessage={respMessage}
+        snackDuration={snackDuration}
       />
     </div>
   )

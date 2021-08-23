@@ -14,18 +14,17 @@ import AppleIcon from '@material-ui/icons/Apple';
 import dotsImage from "../../assets/leftDots.png";
 import blueDotsImage from "../../assets/dotsBlue.png";
 import axios from 'axios';
-import { useHistory } from 'react-router-dom';
 import { ApiConfig } from "../../config/ApiConfig";
 import SnackBarComp from "../../shared/components/snackBar/SnackBarComp";
 import ButtonComp from "../../shared/components/button/ButtonComp";
 
 const RegisterPageComp = () => {
   const classes = useStyles();
-  const history = useHistory();
   const [respMessage, setRespMessage] = useState();
   const [statusType, setStatusType] = useState('error');
   const [open, setOpen] = useState(false);
   const [userDetails, setUserDetails] = useState();
+  const [snackDuration, setSnackDuration] = useState(0);
 
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
@@ -40,10 +39,11 @@ const RegisterPageComp = () => {
         .then((resp) => {
           setStatusType("success");
           setRespMessage(resp.data.message);
-          setTimeout(() => history.push('/login'), 2000);
+          setSnackDuration(11000);
         })
     } catch (err) {
       setRespMessage(err.response.data.message);
+      setSnackDuration(6000);
     }
     setOpen(true);
   }
@@ -174,6 +174,7 @@ const RegisterPageComp = () => {
         setOpen={setOpen}
         statusType={statusType}
         respMessage={respMessage}
+        snackDuration={snackDuration}
       />
     </div>
   )

@@ -5,6 +5,7 @@ import ftrImage from "./assets/footerBubbles.png";
 import "./App.css";
 import RegisterPageComp from "./components/register/RegisterPageComp";
 import HomePageComp from "./components/home/HomePageComp";
+import VerifyEmailPageComp from "./components/verifyEmail/VerifyEmailPageComp";
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
           <Route exact path="/login" component={LoginPageComp} />
           <Route exact path="/register" component={RegisterPageComp} />
           <Route exact path="/" component={HomePageComp} />
+          <Route exact path="/verify-email" component={VerifyEmailPageComp} />
         </Switch>
       </Router>
     </div>

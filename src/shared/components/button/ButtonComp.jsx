@@ -10,6 +10,7 @@ const ButtonComp = ({
     variant,
     startIcon,
     endIcon,
+    onClick,
 }) => (
     <Button
         color={'primary' || color}
@@ -19,6 +20,7 @@ const ButtonComp = ({
         style={style}
         startIcon={startIcon}
         endIcon={endIcon}
+        onClick={onClick}
     >
         {children}
     </Button>
