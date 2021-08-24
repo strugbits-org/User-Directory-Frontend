@@ -2,7 +2,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
   bgImage: {
-    height: "4000px",
+    height: "5024px",
     backgroundRepeat: "no-repeat",
     position: "relative",
     overflowX: "hidden",
@@ -21,10 +21,10 @@ const useStyles = makeStyles({
   },
   chatImage: {
     height: "390px",
-    marginTop: "15%",
+    marginTop: "25%",
     backgroundRepeat: "no-repeat",
   },
-  loginRegisterBtn: {
+  roundBtn: {
     borderTopLeftRadius: "20px",
     borderBottomLeftRadius: "20px",
     borderTopRightRadius: "20px",
@@ -57,6 +57,61 @@ const useStyles = makeStyles({
   whyFastSubTypo: {
     fontSize: "15px",
     color: "rgba(122, 127, 147, 255)",
+  },
+  blueCircle: {
+    backgroundColor: "#3057E6",
+    height: "50px",
+    width: "48px",
+    borderRadius: "100%",
+  },
+  textField: {
+    width: "22%",
+    marginTop: "4%",
+    "& .MuiOutlinedInput-root": {
+      borderRadius: "45px",
+    },
+  },
+  talkingPeople: {
+    height: "630px",
+    backgroundRepeat: "no-repeat",
+  },
+  tryPlanetraDiv: {
+    position: "relative",
+    height: "400px",
+    backgroundRepeat: "no-repeat",
+  },
+  tryPlanetraTypo: {
+    fontSize: "30px",
+    color: "white",
+    textAlign: "center",
+    paddingTop: "7%",
+  },
+  getStartedBtn: {
+    margin: "2% 0 0 45%",
+    backgroundColor: "white",
+    color: "#2F5BEA",
+    "&:hover":{
+      color: "#FFFFFF",
+    }
+  },
+  footerLinkHead: {
+    marginBottom: "2%",
+    color: "#3057E6",
+    fontWeight: 'bold'
+  },
+  footerLinkSubHead: {
+    marginTop: "1%",
+    color: "#7E8085",
+    "&:hover": {
+      cursor: "pointer",
+      textDecoration: "underline",
+    },
+  },
+  footerDiv: {
+    backgroundColor: "#F5F7F8",
+    height: "75px",
+    display: "flex",
+    justifyContent: "center",
   },
 });
 

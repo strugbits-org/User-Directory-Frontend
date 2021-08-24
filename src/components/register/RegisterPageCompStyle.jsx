@@ -93,9 +93,17 @@ const useStyles = makeStyles({
     backgroundImage: "linear-gradient(to right, #6075cb, #090979)",
   },
   dotsImage: {
-    height: "100%",
+    height: "80%",
     backgroundRepeat: "no-repeat",
+    position: 'absolute',
+    top:'10px'
   },
+  blueDotsImage: {
+    height: "100vh",
+    backgroundRepeat: "no-repeat",
+    position: 'absolute',
+    top:'1px'
+  }
 });
 
 export default useStyles;

@@ -2,15 +2,15 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
   bgImage: {
-    height: "753px",
+    height: "100vh",
     position: "relative",
   },
   bubbleImage: {
     position: "absolute",
-    height: "42%",
+    height: "320px",
     width: "100%",
     backgroundRepeat: "no-repeat",
-    top: "437px",
+    top: '654px',
   },
 });
 

@@ -17,6 +17,7 @@ import axios from 'axios';
 import { ApiConfig } from "../../config/ApiConfig";
 import SnackBarComp from "../../shared/components/snackBar/SnackBarComp";
 import ButtonComp from "../../shared/components/button/ButtonComp";
+import LayoutComp from "../../shared/components/layout/LayoutComp";
 
 const RegisterPageComp = () => {
   const classes = useStyles();
@@ -50,12 +51,15 @@ const RegisterPageComp = () => {
 
   return (
     <div>
+      <LayoutComp />
       <Grid container>
-        <Grid style={{ marginTop: '3%' }} item xs={2}>
-          <div className={classes.dotsImage} style={{ backgroundImage: `url(${dotsImage})` }} />
+        <Grid item xs={2}>
+          <div>
+            <img className={classes.dotsImage} src={dotsImage} alt="dots" />
+          </div>
         </Grid>
         <Grid item xs={5}>
-          <div className={classes.dotsImage} style={{ backgroundImage: `url(${blueDotsImage})` }} >
+          <div className={classes.blueDotsImage} style={{ backgroundImage: `url(${blueDotsImage})` }} >
             <div style={{ margin: '20% 0 0 0', width: '80%' }}>
               <div>
                 <Typography className={classes.greatAppTypo}>
