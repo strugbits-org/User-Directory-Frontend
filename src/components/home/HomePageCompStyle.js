@@ -2,7 +2,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
   bgImage: {
-    height: "5024px",
+    height: "5019px",
     backgroundRepeat: "no-repeat",
     position: "relative",
     overflowX: "hidden",
@@ -33,7 +33,8 @@ const useStyles = makeStyles({
   },
   mainHeadTypo: {
     color: "#2C2E30",
-    fontSize: "40px",
+    fontSize: "37px",
+    fontWeight: 'bold',
   },
   subHeadTypo: {
     fontSize: "20px",
@@ -97,7 +98,7 @@ const useStyles = makeStyles({
   footerLinkHead: {
     marginBottom: "2%",
     color: "#3057E6",
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   footerLinkSubHead: {
     marginTop: "1%",

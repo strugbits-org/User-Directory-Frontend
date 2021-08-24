@@ -22,6 +22,8 @@ import envato from "../../assets/envato.png";
 import codekit from "../../assets/codekit.png";
 import jQuery from "../../assets/jQuery.png";
 import github from "../../assets/github.png";
+import tpComment1 from "../../assets/tpComment1.png";
+import tpComment2 from "../../assets/tpComment2.png";
 import footerBackground from "../../assets/footerBackground.png";
 import talkingPeople from "../../assets/talkingPeople.png";
 import ButtonComp from '../../shared/components/button/ButtonComp';
@@ -126,7 +128,7 @@ const HomePageComp = () => {
       </div>
       <div style={{ backgroundColor: '#F6F7F9', height: '7%', marginTop: '11%' }}>
         <div style={{ textAlign: 'center' }}>
-          <Typography style={{ color: '#474E55', fontSize: '20px', paddingTop: '4%' }}> Start your free trial </Typography>
+          <Typography style={{ color: '#474E55', fontWeight: 'bold', fontSize: '20px', paddingTop: '4%' }}> Start your free trial </Typography>
           <Typography style={{ color: '#B9BDC6', fontSize: '17px', paddingTop: '1%' }}> Early stage company? Eligible applicants get all of our products for just $49 a month </Typography>
           <TextFieldComp
             className={classes.textField}
@@ -174,15 +176,21 @@ const HomePageComp = () => {
               </div>
             </Grid>
             <Grid item xs={7}>
-              <div>
+              <div style={{ position: 'relative', marginTop: '10%' }}>
                 <img width="550px" src={talkingPeople} alt="talkingPeople" />
+                <div style={{ position: 'absolute', bottom: '323px', left: '113px' }}>
+                  <img width="130px" src={tpComment1} alt="tpComment1" />
+                </div>
+                <div style={{ position: 'absolute', bottom: '400px', left: '396px' }}>
+                  <img width="70px" src={tpComment2} alt="tpComment2" />
+                </div>
               </div>
             </Grid>
           </Grid>
         </Grid>
       </div>
       <div style={{ marginTop: '13%' }}>
-        <Typography style={{ textAlign: 'center', color: '#2C2E30', fontSize: '25px' }}>
+        <Typography style={{ fontWeight: 'bold', textAlign: 'center', color: '#2C2E30', fontSize: '25px' }}>
           Kind words from happy partners
         </Typography>
         <Typography style={{ textAlign: 'center', color: '#7E8085', fontSize: '17', marginTop: '1%' }}>
@@ -223,7 +231,7 @@ const HomePageComp = () => {
         </div>
       </div>
       <div style={{ backgroundColor: '#F6F7F9', height: '670px', marginTop: '6%' }}>
-        <Typography style={{ padding: '4% 0 90px 0', fontSize: '30px', textAlign: 'center', color: '#474E55' }}>
+        <Typography style={{ fontWeight: 'bold', padding: '4% 0 90px 0', fontSize: '30px', textAlign: 'center', color: '#474E55' }}>
           Powering innovation at 255,000+ companies worldwide
         </Typography>
         <div style={{ marginLeft: '25%' }}>
