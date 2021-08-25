@@ -1,0 +1,9 @@
+[data-aos="triangle"] {
+  transform: rotate(360deg);
+  opacity: 0;
+  transition-property: transform, opacity;
+}
+[data-aos="triangle"].aos-animate {
+  transform: rotate(0);
+  opacity: 1;
+}

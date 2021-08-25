@@ -7,7 +7,7 @@ import {
 const ImageCardComp = ({ head1, head2, imgSrc }) => {
   const classes = useStyles();
   return (
-    <div>
+    <div className={classes.root}>
       <div style={{ position: 'relative' }}>
         <img width="220px" src={imgSrc} alt="card1" />
         <div className={classes.mainDiv}>

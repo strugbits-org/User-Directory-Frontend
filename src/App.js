@@ -4,7 +4,8 @@ import "./App.css";
 import RegisterPageComp from "./components/register/RegisterPageComp";
 import HomePageComp from "./components/home/HomePageComp";
 import VerifyEmailPageComp from "./components/verifyEmail/VerifyEmailPageComp";
-// import LayoutComp from "./shared/components/layout/LayoutComp";
+import UserProfilePageComp from "./components/userProfile/UserProfilePageComp";
+import ProtectedRoute from "./shared/components/protectedRoute/ProtectedRoute";
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
         <Route exact path="/login" component={LoginPageComp} />
         <Route exact path="/register" component={RegisterPageComp} />
         <Route exact path="/verify-email" component={VerifyEmailPageComp} />
+        <ProtectedRoute path="/user-profile" component={UserProfilePageComp} />
       </Switch>
     </Router>
   );

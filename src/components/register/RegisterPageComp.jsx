@@ -32,7 +32,7 @@ const RegisterPageComp = () => {
     setUserDetails((prev) => ({ ...prev, [name]: value }));
   }
 
-  const onClickHandler = async (e) => {
+  const onSubmitHandler = async (e) => {
     e.preventDefault();
     try {
       const body = JSON.stringify(userDetails);
@@ -89,7 +89,7 @@ const RegisterPageComp = () => {
           </div>
         </Grid>
         <Grid item xs={3}>
-          <form onSubmit={onClickHandler}>
+          <form onSubmit={onSubmitHandler}>
             <div className={classes.card}>
               <Card>
                 <Grid container spacing={1}>

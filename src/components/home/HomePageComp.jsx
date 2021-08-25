@@ -27,19 +27,26 @@ import tpComment2 from "../../assets/tpComment2.png";
 import footerBackground from "../../assets/footerBackground.png";
 import talkingPeople from "../../assets/talkingPeople.png";
 import ButtonComp from '../../shared/components/button/ButtonComp';
-import useStyles from "./HomePageCompStyle";
 import { useHistory } from "react-router-dom";
 import BlueCircleComp from './blueCircle/BlueCircleComp';
 import TextFieldComp from "../../shared/components/textField/TextFieldComp";
 import { InputAdornment, IconButton } from "@material-ui/core";
 import AvatarCardComp from './avatarCard/AvatarCardComp';
 import ImageCardComp from './imageCard/ImageCardComp';
-import "animate.css"
+import useStyles from "./HomePageCompStyle";
+import "animate.css";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import "./HomePage.css";
 
 const HomePageComp = () => {
 
   const classes = useStyles();
   const history = useHistory();
+
+  AOS.init({
+    once: true
+  });
 
   return (
     <div className={classes.bgImage} style={{ backgroundImage: `url(${bgImage})` }}>
@@ -90,14 +97,14 @@ const HomePageComp = () => {
             </Grid>
           </Grid>
           <Grid item xs={6}>
-            <div class="animate__animated animate__bounceInRight">
+            <div class="animate__animated animate__bounceInRight animate__delay-2s">
               <div className={classes.workImage} style={{ backgroundImage: `url(${workImage})` }}></div>
             </div>
           </Grid>
           <Grid item xs={12}>
             <Grid container style={{ margin: '10% 0 0 5%' }}>
               <Grid item xs={1}>
-                <div class="animate__animated animate__rotateIn">
+                <div data-aos="triangle">
                   <div className={classes.triangleImage} style={{ backgroundImage: `url(${triangle})` }}></div>
                 </div>
               </Grid>
@@ -183,10 +190,10 @@ const HomePageComp = () => {
             <Grid item xs={7}>
               <div style={{ position: 'relative', marginTop: '10%' }}>
                 <img width="550px" src={talkingPeople} alt="talkingPeople" />
-                <div class="animate__animated animate__bounceInRight" style={{ position: 'absolute', bottom: '323px', left: '113px' }}>
+                <div data-aos="fade-left" data-aos-delay="600" style={{ position: 'absolute', bottom: '323px', left: '113px' }}>
                   <img width="130px" src={tpComment1} alt="tpComment1" />
                 </div>
-                <div class="animate__animated animate__bounceInRight" style={{ position: 'absolute', bottom: '400px', left: '396px' }}>
+                <div data-aos="fade-left" data-aos-delay="300" style={{ position: 'absolute', bottom: '400px', left: '396px' }}>
                   <img width="70px" src={tpComment2} alt="tpComment2" />
                 </div>
               </div>
@@ -242,25 +249,31 @@ const HomePageComp = () => {
         <div style={{ marginLeft: '25%' }}>
           <Grid container>
             <Grid item xs={3}>
-              <ImageCardComp
-                head1="Reimagining online education and student engagement with Jupiter"
-                head2="See story"
-                imgSrc={card1}
-              />
+              <div className={classes.em}>
+                <ImageCardComp
+                  head1="Reimagining online education and student engagement with Jupiter"
+                  head2="See story"
+                  imgSrc={card1}
+                />
+              </div>
             </Grid>
             <Grid item xs={3}>
-              <ImageCardComp
-                head1="Reimagining online education and student engagement with Jupiter"
-                head2="Play Video"
-                imgSrc={card2}
-              />
+              <div className={classes.em}>
+                <ImageCardComp
+                  head1="Reimagining online education and student engagement with Jupiter"
+                  head2="Play Video"
+                  imgSrc={card2}
+                />
+              </div>
             </Grid>
             <Grid item xs={3}>
-              <ImageCardComp
-                head1="Reimagining online education and student engagement with Jupiter"
-                head2="See story"
-                imgSrc={card3}
-              />
+              <div className={classes.em}>
+                <ImageCardComp
+                  head1="Reimagining online education and student engagement with Jupiter"
+                  head2="See story"
+                  imgSrc={card3}
+                />
+              </div>
             </Grid>
           </Grid>
         </div>
@@ -268,12 +281,16 @@ const HomePageComp = () => {
       <div
         className={classes.tryPlanetraDiv}
         style={{ backgroundImage: `url(${footerBackground})` }}>
-        <Typography className={classes.tryPlanetraTypo}>
-          Try Planeta for 14 days, for free!
-        </Typography>
-        <ButtonComp className={classes.getStartedBtn} >
-          Get Started
-        </ButtonComp>
+        <div data-aos="fade-left" data-aos-delay="300">
+          <Typography className={classes.tryPlanetraTypo}>
+            Try Planeta for 14 days, for free!
+          </Typography>
+        </div>
+        <div data-aos="fade-up" data-aos-delay="300">
+          <ButtonComp className={classes.getStartedBtn} >
+            Get Started
+          </ButtonComp>
+        </div>
       </div>
       <div style={{ margin: '0% 8% 0 20%', height: '260px' }}>
         <Grid container>

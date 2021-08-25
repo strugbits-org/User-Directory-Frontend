@@ -36,7 +36,7 @@ const LoginPageComp = () => {
     setUserDetails((prev) => ({ ...prev, [name]: value }));
   }
 
-  const onClickHandler = async (e) => {
+  const onSubmitHandler = async (e) => {
     e.preventDefault();
     try {
       const body = JSON.stringify(userDetails);
@@ -44,8 +44,9 @@ const LoginPageComp = () => {
         .then((resp) => {
           setStatusType("success");
           setRespMessage(resp.data.message);
+          localStorage.setItem('token', resp.data.token);
           setSnackDuration(6000);
-          setTimeout(() => history.push('/'), 2000);
+          setTimeout(() => history.push('/user-profile'), 2000);
         })
     } catch (err) {
       setRespMessage(err.response.data.message);
@@ -94,7 +95,7 @@ const LoginPageComp = () => {
           </div>
         </Grid>
         <Grid item xs={3}>
-          <form onSubmit={onClickHandler}>
+          <form onSubmit={onSubmitHandler}>
             <div className={classes.card}>
               <Card>
                 <Grid container spacing={1}>

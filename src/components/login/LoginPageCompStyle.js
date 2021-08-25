@@ -51,7 +51,7 @@ const useStyles = makeStyles({
   },
   cardFooter: {
     // backgroundColor: '#4350a5',
-    height: "45px",
+    height: "68px",
     display: "flex",
     paddingTop: "5%",
     backgroundImage: "linear-gradient(to right, #6075cb, #090979)",

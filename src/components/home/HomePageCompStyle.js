@@ -2,7 +2,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
   bgImage: {
-    height: "5019px",
+    height: "4994px",
     backgroundRepeat: "no-repeat",
     position: "relative",
     overflowX: "hidden",
@@ -125,6 +125,23 @@ const useStyles = makeStyles({
     height: "75px",
     display: "flex",
     justifyContent: "center",
+  },
+  em: {
+    transition: "box-shadow .3s",
+    width: "62%",
+    height: "355px",
+    "&:hover": {
+      boxShadow: "0 5px 15px rgba(0, 0, 0, 0.8)",
+    },
+  },
+  triangle: {
+    transform: 'rotate(360deg)',
+    opacity: '0',
+    // transitionProperty: transform, opacity,
+    '&.aos-animate': {
+      transform: 'rotate(0)',
+      opacity: '1',
+    }
   },
 });
 
