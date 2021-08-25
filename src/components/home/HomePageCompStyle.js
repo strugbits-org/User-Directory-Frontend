@@ -6,6 +6,7 @@ const useStyles = makeStyles({
     backgroundRepeat: "no-repeat",
     position: "relative",
     overflowX: "hidden",
+    overflowY: "hidden",
   },
   logo: {
     height: "100px",
@@ -14,7 +15,18 @@ const useStyles = makeStyles({
   workImage: {
     height: "480px",
     backgroundRepeat: "no-repeat",
+    // position: "relative",
+    // animation: `$workImageAnimation ease 2s`,
+    // animationDelay: '0.3s'
   },
+  // "@keyframes workImageAnimation": {
+  //   "0%": {
+  //     left: '275px'
+  //   },
+  //   "50%": {
+  //     left: '0px'
+  //   },
+  // },
   triangleImage: {
     height: "150px",
     backgroundRepeat: "no-repeat",
@@ -34,7 +46,7 @@ const useStyles = makeStyles({
   mainHeadTypo: {
     color: "#2C2E30",
     fontSize: "37px",
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   subHeadTypo: {
     fontSize: "20px",
@@ -91,14 +103,14 @@ const useStyles = makeStyles({
     margin: "2% 0 0 45%",
     backgroundColor: "white",
     color: "#2F5BEA",
-    "&:hover":{
+    "&:hover": {
       color: "#FFFFFF",
-    }
+    },
   },
   footerLinkHead: {
     marginBottom: "2%",
     color: "#3057E6",
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   footerLinkSubHead: {
     marginTop: "1%",
