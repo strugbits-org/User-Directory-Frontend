@@ -81,7 +81,9 @@ const HomePageComp = () => {
             <Grid container>
               <Grid item xs={6}>
                 <ButtonComp
-                  className={classes.roundBtn}>
+                  className={classes.roundBtn}
+                  onClick={() => history.push('user/61277d4bce7d06334452fe9a')}
+                  >
                   low it work:
                 </ButtonComp>
                 <br />

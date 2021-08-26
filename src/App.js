@@ -6,6 +6,7 @@ import HomePageComp from "./components/home/HomePageComp";
 import VerifyEmailPageComp from "./components/verifyEmail/VerifyEmailPageComp";
 import UserProfilePageComp from "./components/userProfile/UserProfilePageComp";
 import ProtectedRoute from "./shared/components/protectedRoute/ProtectedRoute";
+import ViewUserProfilePageComp from "./components/viewUserProfile/ViewUserProfilePageComp";
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
         <Route exact path="/login" component={LoginPageComp} />
         <Route exact path="/register" component={RegisterPageComp} />
         <Route exact path="/verify-email" component={VerifyEmailPageComp} />
+        <Route exact path="/user/:id" component={ViewUserProfilePageComp} />
         <ProtectedRoute path="/user-profile" component={UserProfilePageComp} />
       </Switch>
     </Router>

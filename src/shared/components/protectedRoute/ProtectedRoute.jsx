@@ -14,6 +14,8 @@ const ProtectedRoute = (props) => {
     const getUser = async () => {
       await axios.get('/api/user/', ApiConfig).then((resp) => {
         setValue(resp.data.user._id);
+        localStorage.setItem('userId', resp.data.user._id);
+        localStorage.setItem('name', resp.data.user.userName);
       })
         .catch((err) => {
           console.log(err);

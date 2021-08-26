@@ -105,7 +105,7 @@ const RegisterPageComp = () => {
                     <TextFieldComp
                       className={classes.textField}
                       label="User Name"
-                      name="name"
+                      name="userName"
                       onChange={onChangeHandler} />
                   </Grid>
                   <Grid item xs={11}>

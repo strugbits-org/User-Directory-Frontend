@@ -1,73 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { countryList } from '../../shared/data/CountryList';
-import "./UserProfilePageCompStyle.css";
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
-// import {
-//   ProtectedImageApiConfig, ProtectedApiConfig
-// } from '../../config/ApiConfig';
-import SnackBarComp from '../../shared/components/snackBar/SnackBarComp';
-import AddAndDisplayImageComp from '../../shared/components/addAndDisplayImage/AddAndDisplayImageComp';
-// import uploadImage from "../../assets/uploadImage.png";
 
-const UserProfilePageComp = () => {
+const ViewUserProfilePageComp = () => {
 
+  const { id } = useParams();
   const [userDetails, setUserDetails] = useState();
-  const [respMessage, setRespMessage] = useState();
-  const [statusType, setStatusType] = useState('error');
-  const [open, setOpen] = useState(false);
-  const [snackDuration, setSnackDuration] = useState(0);
-  const [selectedImage, setSelectedImage] = useState();
-  const [imagePreview, setImagePreview] = useState();
 
   useEffect(() => {
     const getUserProfile = async () => {
-      const ProtectedApi = {
-        headers: {
-          "x-auth-token": localStorage.getItem("token"),
-          "Content-Type": "application/json",
-        },
-      };
-      await axios.get('/api/user-profile/', ProtectedApi)
+      await axios.get(`/api/user-profile/get-user/${id}`)
         .then((resp) => setUserDetails(resp.data));
     }
     getUserProfile();
-  }, []);
-
-  const onChangeHandler = (e) => {
-    const { name, value } = e.target;
-    setUserDetails((prev) => ({ ...prev, [name]: value }));
-  }
-
-  const onSelectImageHandler = (e) => {
-    setImagePreview(URL.createObjectURL(e.target.files[0]));
-    setSelectedImage(e.target.files[0]);
-  };
-
-  const onSubmitHandler = async (e) => {
-    e.preventDefault();
-    userDetails.id = localStorage.getItem('userId');
-    const formData = new FormData();
-    formData.append('userImage', selectedImage);
-    Object.keys(userDetails).forEach((k) => formData.append(k, userDetails[k]));
-    const ProtectedImageApiConfig = {
-      headers: {
-          "x-auth-token": localStorage.getItem("token"),
-          headers: { "Content-Type": "multipart/form-data" },
-      },
-    };
-    try {
-      await axios.post('/api/user-profile/update-profile', formData, ProtectedImageApiConfig)
-        .then((resp) => {
-          setStatusType("success");
-          setRespMessage(resp.data.message);
-          setSnackDuration(6000);
-        })
-    } catch (err) {
-      setRespMessage(err.response.data.message);
-      setSnackDuration(6000);
-    }
-    setOpen(true);
-  }
+  }, [id])
 
   return (
     <div className="root">
@@ -79,15 +25,15 @@ const UserProfilePageComp = () => {
             <a className="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="/user-profile">User profile</a>
             {/* <!-- Form --> */}
             {/* <form className="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
-              <div className="form-group mb-0">
-                <div className="input-group input-group-alternative">
-                  <div className="input-group-prepend">
-                    <span className="input-group-text"><i className="fas fa-search"></i></span>
-                  </div>
-                  <input className="form-control" placeholder="Search" type="text" />
+            <div className="form-group mb-0">
+              <div className="input-group input-group-alternative">
+                <div className="input-group-prepend">
+                  <span className="input-group-text"><i className="fas fa-search"></i></span>
                 </div>
+                <input className="form-control" placeholder="Search" type="text" />
               </div>
-            </form> */}
+            </div>
+          </form> */}
             {/* <!-- User --> */}
             <ul className="navbar-nav align-items-center d-none d-md-flex">
               <li className="nav-item dropdown">
@@ -97,7 +43,7 @@ const UserProfilePageComp = () => {
                       <img alt="loading" src={`http://64f3-2400-adc1-1bd-5500-9d69-8fbc-b1aa-4147.ngrok.io/${userDetails?.userImage}`} />
                     </span>
                     <div className="media-body ml-2 d-none d-lg-block">
-                      <span className="mb-0 text-sm  font-weight-bold">{localStorage.getItem('name')}</span>
+                      <span className="mb-0 text-sm  font-weight-bold">{userDetails?.userName}</span>
                     </div>
                   </div>
                 </a>
@@ -140,7 +86,7 @@ const UserProfilePageComp = () => {
           <div className="container-fluid d-flex align-items-center">
             <div className="row">
               <div className="col-lg-7 col-md-10">
-                <h1 className="display-2 text-white">Hello {localStorage.getItem('name')}</h1>
+                <h1 className="display-2 text-white">Hello {userDetails?.userName}</h1>
                 <p className="text-white mt-0 mb-5">This is your profile page. You can see the progress you've made with your work and manage your projects or assigned tasks</p>
                 {/* <a href="/user-profile" className="btn btn-info">Edit profile</a> */}
               </div>
@@ -188,7 +134,7 @@ const UserProfilePageComp = () => {
                   </div>
                   <div className="text-center">
                     <h3>
-                      {localStorage.getItem('name')}<span className="font-weight-light">, 27</span>
+                      {userDetails?.userName}<span className="font-weight-light">, 27</span>
                     </h3>
                     <div className="h5 font-weight-300">
                       <i className="ni location_pin mr-2"></i>Bucharest, Romania
@@ -216,34 +162,30 @@ const UserProfilePageComp = () => {
                   </div>
                 </div>
                 <div className="card-body">
-                  <form onSubmit={onSubmitHandler}>
+                  <form >
                     <h6 className="heading-small text-muted mb-4">User information</h6>
                     <div className="pl-lg-4">
                       <div className="row">
                         <div className="col-lg-6">
                           <div className="form-group focused">
-                            <label className="form-control-label" htmlFor="input-username">Username</label>
-                            <input id="input-username" defaultValue={userDetails?.userName} className="form-control form-control-alternative" placeholder="Lucky" name="userName" onChange={onChangeHandler} />
+                            <label className="form-control-label" htmlFor="input-username">Username:  {userDetails?.userName} </label>
                           </div>
                         </div>
                         <div className="col-lg-6">
                           <div className="form-group">
-                            <label className="form-control-label" htmlFor="input-email">Email address</label>
-                            <input type="email" id="input-email" defaultValue={userDetails?.email} className="form-control form-control-alternative" placeholder="jesse@example.com" name="email" onChange={onChangeHandler} />
+                            <label className="form-control-label" htmlFor="input-email">Email address: {userDetails?.email}</label>
                           </div>
                         </div>
                       </div>
                       <div className="row">
                         <div className="col-lg-6">
                           <div className="form-group focused">
-                            <label className="form-control-label" htmlFor="input-first-name">First name</label>
-                            <input type="text" id="input-first-name" defaultValue={userDetails?.firstName} className="form-control form-control-alternative" placeholder="Lucky" name="firstName" onChange={onChangeHandler} />
+                            <label className="form-control-label" htmlFor="input-first-name">First name: {userDetails?.firstName}</label>
                           </div>
                         </div>
                         <div className="col-lg-6">
                           <div className="form-group focused">
-                            <label className="form-control-label" htmlFor="input-last-name">Last name</label>
-                            <input type="text" id="input-last-name" defaultValue={userDetails?.lastName} className="form-control form-control-alternative" placeholder="Jesse" name="lastName" onChange={onChangeHandler} />
+                            <label className="form-control-label" htmlFor="input-last-name">Last name: {userDetails?.lastName}</label>
                           </div>
                         </div>
                       </div>
@@ -255,45 +197,24 @@ const UserProfilePageComp = () => {
                       <div className="row">
                         <div className="col-md-12">
                           <div className="form-group focused">
-                            <label className="form-control-label" htmlFor="input-address">Address</label>
-                            <input id="input-address" defaultValue={userDetails?.address} className="form-control form-control-alternative" placeholder="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09" name="address" onChange={onChangeHandler} type="text" />
+                            <label className="form-control-label" htmlFor="input-address">Address: {userDetails?.address} </label>
                           </div>
                         </div>
                       </div>
                       <div className="row">
                         <div className="col-lg-4">
                           <div className="form-group focused">
-                            <label className="form-control-label" htmlFor="input-city">City</label>
-                            <input type="text" id="input-city" defaultValue={userDetails?.city} className="form-control form-control-alternative" placeholder="New York" name="city" onChange={onChangeHandler} />
+                            <label className="form-control-label" htmlFor="input-city">City: {userDetails?.city}</label>
                           </div>
                         </div>
                         <div className="col-lg-4">
                           <div className="form-group focused">
-                            <label className="form-control-label" htmlFor="input-country">Country</label>
-                            <select
-                              onChange={(e) => {
-                                e.persist();
-                                setUserDetails((prev) => ({ ...prev, country: e.target.value }));
-                              }}
-                              defaultValue={userDetails?.country}
-                              className="form-control form-control-alternative">
-                              <optgroup>
-                                {
-                                  countryList.map((v) => {
-                                    if (v === userDetails?.country) {
-                                      return <option value={v} selected>{v}</option>
-                                    }
-                                    return <option value={v}>{v}</option>
-                                  })
-                                }
-                              </optgroup>
-                            </select>
+                            <label className="form-control-label" htmlFor="input-country">Country: {userDetails?.country}</label>
                           </div>
                         </div>
                         <div className="col-lg-4">
                           <div className="form-group">
-                            <label className="form-control-label" htmlFor="input-country">Postal code</label>
-                            <input type="number" id="input-postal-code" defaultValue={userDetails?.postalCode} className="form-control form-control-alternative" placeholder="Postal code" name="postalCode" onChange={onChangeHandler} />
+                            <label className="form-control-label" htmlFor="input-country">Postal code: {userDetails?.postalCode}</label>
                           </div>
                         </div>
                       </div>
@@ -303,23 +224,9 @@ const UserProfilePageComp = () => {
                     <h6 className="heading-small text-muted mb-4">About me</h6>
                     <div className="pl-lg-4">
                       <div className="form-group focused">
-                        <label>About Me</label>
-                        <textarea rows="4" name="aboutMe" defaultValue={userDetails?.aboutMe} onChange={onChangeHandler} className="form-control form-control-alternative" placeholder="A few words about you ..."></textarea>
+                        <label>About Me: {userDetails?.aboutMe}</label>
+
                       </div>
-                    </div>
-                    <div className="pl-lg-4">
-                      <AddAndDisplayImageComp
-                        onSelectImageHandler={onSelectImageHandler}
-                        src={userDetails
-                          ? `http://64f3-2400-adc1-1bd-5500-9d69-8fbc-b1aa-4147.ngrok.io/${userDetails?.userImage}`
-                          : '/assets/untitle.png'
-                        }
-                        imagePreview={imagePreview}
-                        imageRequired={true}
-                      />
-                    </div>
-                    <div className="col-12 text-right">
-                      <button type="submit" className="btn btn-sm btn-primary"> Update </button>
                     </div>
                   </form>
                 </div>
@@ -338,15 +245,8 @@ const UserProfilePageComp = () => {
           </div>
         </div>
       </footer>
-      <SnackBarComp
-        open={open}
-        setOpen={setOpen}
-        statusType={statusType}
-        respMessage={respMessage}
-        snackDuration={snackDuration}
-      />
     </div>
   )
 }
 
-export default UserProfilePageComp
+export default ViewUserProfilePageComp
