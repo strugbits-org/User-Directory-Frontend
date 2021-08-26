@@ -39,6 +39,7 @@ body {
 
 .root {
   box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 [tabindex="-1"]:focus {

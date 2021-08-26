@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { backendURL } from '../../config/ApiConfig';
 
 const ViewUserProfilePageComp = () => {
 
@@ -40,7 +41,7 @@ const ViewUserProfilePageComp = () => {
                 <a className="nav-link pr-0" href="/user-profile" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <div className="media align-items-center">
                     <span className="avatar avatar-sm rounded-circle">
-                      <img alt="loading" src={`http://64f3-2400-adc1-1bd-5500-9d69-8fbc-b1aa-4147.ngrok.io/${userDetails?.userImage}`} />
+                      <img alt="loading" src={`${backendURL}/${userDetails?.userImage}`} />
                     </span>
                     <div className="media-body ml-2 d-none d-lg-block">
                       <span className="mb-0 text-sm  font-weight-bold">{userDetails?.userName}</span>
@@ -102,7 +103,7 @@ const ViewUserProfilePageComp = () => {
                   <div className="col-lg-3 order-lg-2">
                     <div className="card-profile-image">
                       <a href="/user-profile">
-                        <img src={`http://64f3-2400-adc1-1bd-5500-9d69-8fbc-b1aa-4147.ngrok.io/${userDetails?.userImage}`} alt="loading" className="rounded-circle" />
+                        <img src={`${backendURL}/${userDetails?.userImage}`} alt="loading" className="rounded-circle" />
                       </a>
                     </div>
                   </div>
@@ -137,7 +138,7 @@ const ViewUserProfilePageComp = () => {
                       {userDetails?.userName}<span className="font-weight-light">, 27</span>
                     </h3>
                     <div className="h5 font-weight-300">
-                      <i className="ni location_pin mr-2"></i>Bucharest, Romania
+                      <i className="ni location_pin mr-2"></i>{userDetails?.city}, {userDetails?.country}
                     </div>
                     <div className="h5 mt-4">
                       <i className="ni business_briefcase-24 mr-2"></i>Solution Manager - Creative Tim Officer

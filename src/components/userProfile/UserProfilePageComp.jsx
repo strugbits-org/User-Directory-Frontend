@@ -7,7 +7,8 @@ import axios from 'axios';
 // } from '../../config/ApiConfig';
 import SnackBarComp from '../../shared/components/snackBar/SnackBarComp';
 import AddAndDisplayImageComp from '../../shared/components/addAndDisplayImage/AddAndDisplayImageComp';
-// import uploadImage from "../../assets/uploadImage.png";
+import { backendURL } from '../../config/ApiConfig';
+import userAltAvatar from "../../assets/userAltAvatar.png";
 
 const UserProfilePageComp = () => {
 
@@ -51,8 +52,8 @@ const UserProfilePageComp = () => {
     Object.keys(userDetails).forEach((k) => formData.append(k, userDetails[k]));
     const ProtectedImageApiConfig = {
       headers: {
-          "x-auth-token": localStorage.getItem("token"),
-          headers: { "Content-Type": "multipart/form-data" },
+        "x-auth-token": localStorage.getItem("token"),
+        headers: { "Content-Type": "multipart/form-data" },
       },
     };
     try {
@@ -61,6 +62,7 @@ const UserProfilePageComp = () => {
           setStatusType("success");
           setRespMessage(resp.data.message);
           setSnackDuration(6000);
+          setTimeout(() => window.location.reload(), 4000);
         })
     } catch (err) {
       setRespMessage(err.response.data.message);
@@ -94,7 +96,7 @@ const UserProfilePageComp = () => {
                 <a className="nav-link pr-0" href="/user-profile" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <div className="media align-items-center">
                     <span className="avatar avatar-sm rounded-circle">
-                      <img alt="loading" src={`http://64f3-2400-adc1-1bd-5500-9d69-8fbc-b1aa-4147.ngrok.io/${userDetails?.userImage}`} />
+                      <img alt="loading" src={userDetails?.userImage ? `${backendURL}/${userDetails?.userImage}` : userAltAvatar} />
                     </span>
                     <div className="media-body ml-2 d-none d-lg-block">
                       <span className="mb-0 text-sm  font-weight-bold">{localStorage.getItem('name')}</span>
@@ -156,7 +158,7 @@ const UserProfilePageComp = () => {
                   <div className="col-lg-3 order-lg-2">
                     <div className="card-profile-image">
                       <a href="/user-profile">
-                        <img src={`http://64f3-2400-adc1-1bd-5500-9d69-8fbc-b1aa-4147.ngrok.io/${userDetails?.userImage}`} alt="loading" className="rounded-circle" />
+                        <img src={userDetails?.userImage ? `${backendURL}/${userDetails?.userImage}` : userAltAvatar} alt="loading" className="rounded-circle" />
                       </a>
                     </div>
                   </div>
@@ -191,7 +193,7 @@ const UserProfilePageComp = () => {
                       {localStorage.getItem('name')}<span className="font-weight-light">, 27</span>
                     </h3>
                     <div className="h5 font-weight-300">
-                      <i className="ni location_pin mr-2"></i>Bucharest, Romania
+                      <i className="ni location_pin mr-2"></i>{userDetails?.city}, {userDetails?.country}
                     </div>
                     <div className="h5 mt-4">
                       <i className="ni business_briefcase-24 mr-2"></i>Solution Manager - Creative Tim Officer
@@ -311,11 +313,11 @@ const UserProfilePageComp = () => {
                       <AddAndDisplayImageComp
                         onSelectImageHandler={onSelectImageHandler}
                         src={userDetails
-                          ? `http://64f3-2400-adc1-1bd-5500-9d69-8fbc-b1aa-4147.ngrok.io/${userDetails?.userImage}`
-                          : '/assets/untitle.png'
+                          ? `${backendURL}/${userDetails?.userImage}`
+                          : userAltAvatar
                         }
                         imagePreview={imagePreview}
-                        imageRequired={true}
+                        imageRequired={userDetails?.userImage ? false : true}
                       />
                     </div>
                     <div className="col-12 text-right">
