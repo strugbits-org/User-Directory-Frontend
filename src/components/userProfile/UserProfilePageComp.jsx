@@ -28,14 +28,10 @@ const UserProfilePageComp = () => {
       const ProtectedApi = {
         headers: {
           "x-auth-token": localStorage.getItem("token"),
-          "Content-Type": "application/json",
         },
       };
 
-      await axios.get('/api/user-profile/get-all-users', ProtectedApi)
-        .then((resp) => console.log(resp.data));
-
-      await axios.get('/api/user-profile/', ProtectedApi)
+      await axios.get('/api/user/user-profile/', ProtectedApi)
         .then((resp) => setUserDetails(resp.data));
     }
     getUserProfile();
@@ -45,7 +41,7 @@ const UserProfilePageComp = () => {
     const { name, value } = e.target;
     setUserDetails((prev) => ({ ...prev, [name]: value }));
   }
-  console.log(userDetails)
+
   const onSelectImageHandler = (e) => {
     setImagePreview(URL.createObjectURL(e.target.files[0]));
     setSelectedImage(e.target.files[0]);
@@ -65,7 +61,7 @@ const UserProfilePageComp = () => {
       },
     };
     try {
-      await axios.post('/api/user-profile/update-profile', formData, ProtectedImageApiConfig)
+      await axios.post('/api/user/user-profile/update-profile', formData, ProtectedImageApiConfig)
         .then((resp) => {
           setStatusType("success");
           setRespMessage(resp.data.message);

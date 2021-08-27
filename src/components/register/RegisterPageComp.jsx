@@ -39,7 +39,7 @@ const RegisterPageComp = () => {
     setBtnVisibility(true);
     try {
       const body = JSON.stringify(userDetails);
-      await axios.post('/api/user/register', body, ApiConfig)
+      await axios.post('/api/auth/register', body, ApiConfig)
         .then((resp) => {
           setStatusType("success");
           setBtnVisibility(false);

@@ -10,7 +10,7 @@ const ViewUserProfilePageComp = () => {
 
   useEffect(() => {
     const getUserProfile = async () => {
-      await axios.get(`/api/user-profile/get-user/${id}`)
+      await axios.get(`/api/user/user-profile/get-user/${id}`)
         .then((resp) => setUserDetails(resp.data));
     }
     getUserProfile();

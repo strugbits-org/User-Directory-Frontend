@@ -14,6 +14,8 @@ const TextFieldComp = ({
   variant,
   placeholder,
   defaultValue,
+  size,
+  required,
 }) => {
 
   return (
@@ -25,12 +27,13 @@ const TextFieldComp = ({
       name={name}
       type={type}
       onChange={onChange}
-      required
+      required={required}
       InputProps={InputProps}
       inputProps={inputProps}
       style={style}
       placeholder={placeholder}
       defaultValue={defaultValue}
+      size={size}
     />
   );
 };

@@ -43,7 +43,7 @@ const LoginPageComp = () => {
     setBtnVisibility(true);
     try {
       const body = JSON.stringify(userDetails);
-      await axios.post('/api/user/login', body, ApiConfig)
+      await axios.post('/api/auth/login', body, ApiConfig)
         .then((resp) => {
           setStatusType("success");
           setRespMessage(resp.data.message);

@@ -18,7 +18,7 @@ const VerifyEmailPageComp = () => {
     const verifyEmail = async () => {
       const body = JSON.stringify({ token: url[1] });
       await axios
-        .post("/api/user/verify-email", body, ApiConfig)
+        .post("/api/auth/verify-email", body, ApiConfig)
         .then((resp) => {
           setUser(resp.data.id);
           setRespMessage(resp.data.message);

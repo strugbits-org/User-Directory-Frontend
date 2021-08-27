@@ -12,7 +12,7 @@ const ProtectedRoute = (props) => {
       headers: { 'x-auth-token': localStorage.getItem('token') }
     }
     const getUser = async () => {
-      await axios.get('/api/user/', ApiConfig).then((resp) => {
+      await axios.get('/api/auth/', ApiConfig).then((resp) => {
         setValue(resp.data.user._id);
         localStorage.setItem('userId', resp.data.user._id);
         localStorage.setItem('name', resp.data.user.userName);

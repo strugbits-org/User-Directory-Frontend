@@ -16,7 +16,7 @@ const ButtonComp = ({
     const classes = useStyles();
     return (
         <Button
-            color={'primary' || color}
+            color={color || 'primary'}
             variant={'contained' || variant}
             className={`${className} ${classes.btn}`}
             type={type}
