@@ -2,7 +2,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
   mainDiv: {
-    height: "90px",
+    height: "150px",
     width: "215px",
     marginLeft: "25px",
     border: "1px solid #EAEAEA",
@@ -19,7 +19,7 @@ const useStyles = makeStyles({
   },
   imageDiv: {
     position: "absolute",
-    bottom: "100px",
+    bottom: "130px",
   },
 });
 

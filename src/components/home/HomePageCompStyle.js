@@ -2,7 +2,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
   bgImage: {
-    height: "4994px",
+    height: "5050px",
     backgroundRepeat: "no-repeat",
     position: "relative",
     overflowX: "hidden",

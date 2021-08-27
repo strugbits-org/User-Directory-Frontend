@@ -13,6 +13,7 @@ const TextFieldComp = ({
   style,
   variant,
   placeholder,
+  defaultValue,
 }) => {
 
   return (
@@ -29,6 +30,7 @@ const TextFieldComp = ({
       inputProps={inputProps}
       style={style}
       placeholder={placeholder}
+      defaultValue={defaultValue}
     />
   );
 };

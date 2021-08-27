@@ -21,6 +21,7 @@ import { ApiConfig } from "../../config/ApiConfig";
 import SnackBarComp from "../../shared/components/snackBar/SnackBarComp";
 import ButtonComp from "../../shared/components/button/ButtonComp";
 import LayoutComp from "../../shared/components/layout/LayoutComp";
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const LoginPageComp = () => {
   const classes = useStyles();
@@ -30,6 +31,7 @@ const LoginPageComp = () => {
   const [statusType, setStatusType] = useState('error');
   const [open, setOpen] = useState(false);
   const [snackDuration, setSnackDuration] = useState(0);
+  const [btnVisibility, setBtnVisibility] = useState(false);
 
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
@@ -38,6 +40,7 @@ const LoginPageComp = () => {
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
+    setBtnVisibility(true);
     try {
       const body = JSON.stringify(userDetails);
       await axios.post('/api/user/login', body, ApiConfig)
@@ -51,6 +54,8 @@ const LoginPageComp = () => {
     } catch (err) {
       setRespMessage(err.response.data.message);
       setSnackDuration(6000);
+      setStatusType("error");
+      setBtnVisibility(false);
     }
     setOpen(true);
   }
@@ -132,12 +137,16 @@ const LoginPageComp = () => {
                     </div>
                   </Grid>
                   <Grid item xs={12}>
-                    <ButtonComp
-                      className={classes.loginBtn}
-                      endIcon={<ArrowRightTwoToneIcon />}
-                      type="submit">
-                      LOG IN
-                    </ButtonComp>
+                    {
+                      btnVisibility ?
+                        <CircularProgress style={{ margin: "4% 0 2% 45%" }} />
+                        : <ButtonComp
+                          className={classes.loginBtn}
+                          endIcon={<ArrowRightTwoToneIcon />}
+                          type="submit">
+                          LOG IN
+                        </ButtonComp>
+                    }
                   </Grid>
                   <Grid item xs={12}>
                     <Typography className={classes.socialTypo}>
@@ -176,9 +185,7 @@ const LoginPageComp = () => {
             </div>
           </form>
         </Grid>
-        <Grid item xs={2}>
-
-        </Grid>
+        <Grid item xs={2}></Grid>
       </Grid>
       <SnackBarComp
         open={open}

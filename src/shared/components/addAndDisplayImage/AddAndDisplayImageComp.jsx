@@ -17,13 +17,16 @@ const AddAndDisplayImageComp = ({
           name="image"
           accept="image/*"
           required={imageRequired}
-          onChange={onSelectImageHandler} 
+          onChange={onSelectImageHandler}
         />
-        <img
-          className={classes.imagePreview}
-          src={imagePreview || src}
-          alt="User"
-        />
+        {
+          imagePreview === undefined ? null :
+            <img
+              className={classes.imagePreview}
+              src={imagePreview || src}
+              alt="User"
+            />
+        }
       </>
     </div>
   )

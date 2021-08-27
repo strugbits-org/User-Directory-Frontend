@@ -18,6 +18,7 @@ import { ApiConfig } from "../../config/ApiConfig";
 import SnackBarComp from "../../shared/components/snackBar/SnackBarComp";
 import ButtonComp from "../../shared/components/button/ButtonComp";
 import LayoutComp from "../../shared/components/layout/LayoutComp";
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const RegisterPageComp = () => {
   const classes = useStyles();
@@ -26,6 +27,7 @@ const RegisterPageComp = () => {
   const [open, setOpen] = useState(false);
   const [userDetails, setUserDetails] = useState();
   const [snackDuration, setSnackDuration] = useState(0);
+  const [btnVisibility, setBtnVisibility] = useState(false);
 
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
@@ -34,17 +36,23 @@ const RegisterPageComp = () => {
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
+    setBtnVisibility(true);
     try {
       const body = JSON.stringify(userDetails);
       await axios.post('/api/user/register', body, ApiConfig)
         .then((resp) => {
           setStatusType("success");
+          setBtnVisibility(false);
+          setUserDetails();
           setRespMessage(resp.data.message);
           setSnackDuration(11000);
+          document.getElementById("registerForm").reset();
         })
     } catch (err) {
       setRespMessage(err.response.data.message);
+      setStatusType("error");
       setSnackDuration(6000);
+      setBtnVisibility(false);
     }
     setOpen(true);
   }
@@ -89,7 +97,7 @@ const RegisterPageComp = () => {
           </div>
         </Grid>
         <Grid item xs={3}>
-          <form onSubmit={onSubmitHandler}>
+          <form id="registerForm" onSubmit={onSubmitHandler}>
             <div className={classes.card}>
               <Card>
                 <Grid container spacing={1}>
@@ -125,12 +133,16 @@ const RegisterPageComp = () => {
                       onChange={onChangeHandler} />
                   </Grid>
                   <Grid item xs={12}>
-                    <ButtonComp
-                      className={classes.registerBtn}
-                      endIcon={<ArrowRightTwoToneIcon />}
-                      type="submit">
-                      Register
-                    </ButtonComp>
+                    {
+                      btnVisibility ?
+                        <CircularProgress style={{ margin: "4% 0 2% 45%" }} />
+                        : <ButtonComp
+                          className={classes.registerBtn}
+                          endIcon={<ArrowRightTwoToneIcon />}
+                          type="submit">
+                          Register
+                        </ButtonComp>
+                    }
                   </Grid>
                   <Grid item xs={12}>
                     <Typography className={classes.socialTypo}>

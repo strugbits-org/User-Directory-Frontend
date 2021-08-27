@@ -9,6 +9,7 @@ import SnackBarComp from '../../shared/components/snackBar/SnackBarComp';
 import AddAndDisplayImageComp from '../../shared/components/addAndDisplayImage/AddAndDisplayImageComp';
 import { backendURL } from '../../config/ApiConfig';
 import userAltAvatar from "../../assets/userAltAvatar.png";
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const UserProfilePageComp = () => {
 
@@ -19,15 +20,21 @@ const UserProfilePageComp = () => {
   const [snackDuration, setSnackDuration] = useState(0);
   const [selectedImage, setSelectedImage] = useState();
   const [imagePreview, setImagePreview] = useState();
+  const [btnVisibility, setBtnVisibility] = useState(false);
 
   useEffect(() => {
     const getUserProfile = async () => {
+
       const ProtectedApi = {
         headers: {
           "x-auth-token": localStorage.getItem("token"),
           "Content-Type": "application/json",
         },
       };
+
+      await axios.get('/api/user-profile/get-all-users', ProtectedApi)
+        .then((resp) => console.log(resp.data));
+
       await axios.get('/api/user-profile/', ProtectedApi)
         .then((resp) => setUserDetails(resp.data));
     }
@@ -38,7 +45,7 @@ const UserProfilePageComp = () => {
     const { name, value } = e.target;
     setUserDetails((prev) => ({ ...prev, [name]: value }));
   }
-
+  console.log(userDetails)
   const onSelectImageHandler = (e) => {
     setImagePreview(URL.createObjectURL(e.target.files[0]));
     setSelectedImage(e.target.files[0]);
@@ -46,6 +53,7 @@ const UserProfilePageComp = () => {
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
+    setBtnVisibility(true);
     userDetails.id = localStorage.getItem('userId');
     const formData = new FormData();
     formData.append('userImage', selectedImage);
@@ -62,11 +70,13 @@ const UserProfilePageComp = () => {
           setStatusType("success");
           setRespMessage(resp.data.message);
           setSnackDuration(6000);
-          setTimeout(() => window.location.reload(), 4000);
+          setTimeout(() => window.location.reload(), 3000);
         })
     } catch (err) {
       setRespMessage(err.response.data.message);
       setSnackDuration(6000);
+      setBtnVisibility(false);
+      setStatusType("error");
     }
     setOpen(true);
   }
@@ -196,13 +206,13 @@ const UserProfilePageComp = () => {
                       <i className="ni location_pin mr-2"></i>{userDetails?.city}, {userDetails?.country}
                     </div>
                     <div className="h5 mt-4">
-                      <i className="ni business_briefcase-24 mr-2"></i>Solution Manager - Creative Tim Officer
+                      <i className="ni business_briefcase-24 mr-2"></i>{userDetails?.employment}
                     </div>
                     <div>
-                      <i className="ni education_hat mr-2"></i>University of Computer Science
+                      <i className="ni education_hat mr-2"></i>{userDetails?.university}
                     </div>
                     <hr className="my-4" />
-                    <p>Ryan — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music.</p>
+                    <p>{userDetails?.userName} — {userDetails?.aboutMe}</p>
                     <a href="/user-profile">Show more</a>
                   </div>
                 </div>
@@ -246,6 +256,18 @@ const UserProfilePageComp = () => {
                           <div className="form-group focused">
                             <label className="form-control-label" htmlFor="input-last-name">Last name</label>
                             <input type="text" id="input-last-name" defaultValue={userDetails?.lastName} className="form-control form-control-alternative" placeholder="Jesse" name="lastName" onChange={onChangeHandler} />
+                          </div>
+                        </div>
+                        <div className="col-lg-6">
+                          <div className="form-group focused">
+                            <label className="form-control-label" htmlFor="input-university">University</label>
+                            <input type="text" id="input-university" defaultValue={userDetails?.university} className="form-control form-control-alternative" placeholder="Sir Syed University of Engineering" name="university" onChange={onChangeHandler} />
+                          </div>
+                        </div>
+                        <div className="col-lg-6">
+                          <div className="form-group focused">
+                            <label className="form-control-label" htmlFor="input-employment">Employment</label>
+                            <input type="text" id="input-employment" defaultValue={userDetails?.employment} className="form-control form-control-alternative" placeholder="Solution Manager-Creative Tim Officer" name="employment" onChange={onChangeHandler} />
                           </div>
                         </div>
                       </div>
@@ -321,7 +343,11 @@ const UserProfilePageComp = () => {
                       />
                     </div>
                     <div className="col-12 text-right">
-                      <button type="submit" className="btn btn-sm btn-primary"> Update </button>
+                      {
+                        btnVisibility ?
+                          <CircularProgress />
+                          : <button type="submit" className="btn btn-sm btn-primary"> Update </button>
+                      }
                     </div>
                   </form>
                 </div>
