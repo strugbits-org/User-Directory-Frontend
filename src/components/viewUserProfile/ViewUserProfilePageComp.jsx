@@ -141,13 +141,13 @@ const ViewUserProfilePageComp = () => {
                       <i className="ni location_pin mr-2"></i>{userDetails?.city}, {userDetails?.country}
                     </div>
                     <div className="h5 mt-4">
-                      <i className="ni business_briefcase-24 mr-2"></i>Solution Manager - Creative Tim Officer
+                      <i className="ni business_briefcase-24 mr-2"></i>{userDetails?.employment}
                     </div>
                     <div>
-                      <i className="ni education_hat mr-2"></i>University of Computer Science
+                      <i className="ni education_hat mr-2"></i>{userDetails?.university}
                     </div>
                     <hr className="my-4" />
-                    <p>Ryan — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music.</p>
+                    <p>{userDetails?.userName} — {userDetails?.aboutMe}</p>
                     <a href="/user-profile">Show more</a>
                   </div>
                 </div>
@@ -225,7 +225,7 @@ const ViewUserProfilePageComp = () => {
                     <h6 className="heading-small text-muted mb-4">About me</h6>
                     <div className="pl-lg-4">
                       <div className="form-group focused">
-                        <label>About Me: {userDetails?.aboutMe}</label>
+                        <label>{userDetails?.aboutMe}</label>
 
                       </div>
                     </div>

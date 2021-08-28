@@ -8,6 +8,7 @@ import UserProfilePageComp from "./components/userProfile/UserProfilePageComp";
 import ProtectedRoute from "./shared/components/protectedRoute/ProtectedRoute";
 import ViewUserProfilePageComp from "./components/viewUserProfile/ViewUserProfilePageComp";
 import UserListPageComp from "./components/userList/UserListPageComp";
+import ChatPageComp from "./components/chat/ChatPageComp";
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
         <Route exact path="/user/:id" component={ViewUserProfilePageComp} />
         <ProtectedRoute path="/user-profile" component={UserProfilePageComp} />
         <ProtectedRoute path="/users" component={UserListPageComp} />
+        <ProtectedRoute path="/user-messages" component={ChatPageComp} />
       </Switch>
     </Router>
   );

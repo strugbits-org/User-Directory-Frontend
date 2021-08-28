@@ -17,6 +17,7 @@ import SelectComp from '../../shared/components/select/SelectComp';
 import { countryList } from '../../shared/data/CountryList';
 import userList from "../../assets/userList.jpg";
 import { useHistory } from "react-router-dom";
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const UserListPageComp = () => {
 
@@ -25,6 +26,7 @@ const UserListPageComp = () => {
   const [searchFilterDetail, setSearchFilterDetails] = useState();
   const [allUsers, setAllUsers] = useState();
   const history = useHistory();
+  const [btnVisibility, setBtnVisibility] = useState(false);
 
   useEffect(() => {
     const getUserProfile = async () => {
@@ -51,14 +53,18 @@ const UserListPageComp = () => {
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
+    setBtnVisibility(true);
     const body = JSON.stringify(searchFilterDetail);
     await axios.post('/api/user/search-users', body, ProtectedApiConfig)
-      .then((resp) => setAllUsers(resp.data))
+      .then((resp) => {
+        setAllUsers(resp.data);
+        setBtnVisibility(false);
+      })
   }
 
   const onListItemHandler = async (id) => {
     await axios.get(`/api/user/get-user-by-user-profile-id/${id}`)
-    .then((resp) => history.push(`user/${resp.data}`))
+      .then((resp) => history.push(`user/${resp.data}`))
   }
 
   return (
@@ -120,7 +126,11 @@ const UserListPageComp = () => {
                 onChange={onChangeHandler} />
             </Grid>
             <Grid item xs={1}>
-              <ButtonComp type="submit"> Search </ButtonComp>
+              {
+                !btnVisibility ?
+                  <ButtonComp type="submit"> Search </ButtonComp>
+                  : <CircularProgress style={{ margin: "0 0 0 10%" }} />
+              }
             </Grid>
             <Grid item xs={2}>
               <ButtonComp color="secondary" onClick={() => {
