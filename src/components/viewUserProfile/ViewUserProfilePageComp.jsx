@@ -2,11 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { backendURL } from '../../config/ApiConfig';
+import { useHistory } from "react-router-dom";
 
 const ViewUserProfilePageComp = () => {
 
   const { id } = useParams();
   const [userDetails, setUserDetails] = useState();
+  const userId = localStorage.getItem('userId');
+  const history = useHistory();
 
   useEffect(() => {
     const getUserProfile = async () => {
@@ -16,6 +19,23 @@ const ViewUserProfilePageComp = () => {
     getUserProfile();
   }, [id])
 
+  const onMessageHandler = async () => {
+
+    const conversation = {
+      senderId: userId,
+      receiverId: id
+    }
+
+    const ProtectedApi = {
+      headers: {
+        "x-auth-token": localStorage.getItem("token"),
+      },
+    };
+
+    await axios.post('/api/conversation/', conversation, ProtectedApi);
+    history.push("/user-messages")
+
+  }
   return (
     <div className="root">
       <div className="main-content">
@@ -111,7 +131,7 @@ const ViewUserProfilePageComp = () => {
                 <div className="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
                   <div className="d-flex justify-content-between">
                     <a href="/user-profile" className="btn btn-sm btn-info mr-4">Connect</a>
-                    <a href="/user-profile" className="btn btn-sm btn-default float-right">Message</a>
+                    <button onClick={() => onMessageHandler()} className="btn btn-sm btn-default float-right"> Message </button>
                   </div>
                 </div>
                 <div className="card-body pt-0 pt-md-4">
