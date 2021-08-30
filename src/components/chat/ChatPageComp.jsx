@@ -1,10 +1,12 @@
-// import { io } from "socket.io-client";
 import React, { useState, useEffect, useRef } from 'react';
 import "./ChatPageCompStyle.css";
+import Autocomplete from '@material-ui/lab/Autocomplete';
 import ConversationComp from "./conversation/ConversationComp";
 import MessageComp from "./message/MessageComp";
 import axios from 'axios';
 import { io } from "socket.io-client";
+import TextFieldComp from '../../shared/components/textField/TextFieldComp';
+import { ProtectedApiConfig } from '../../config/ApiConfig';
 
 const ChatPageComp = () => {
 
@@ -16,11 +18,11 @@ const ChatPageComp = () => {
   const [arrivalMessage, setArrivalMessage] = useState('');
   const socket = useRef();
   const scrollRef = useRef();
+  const [searchRecord, setSearchRecord] = useState([]);
 
   useEffect(() => {
     socket.current = io("ws://localhost:8900");
     socket.current.on("getMessage", (data) => {
-      console.log(data)
       setArrivalMessage({
         sender: data.senderId,
         text: data.text,
@@ -31,9 +33,9 @@ const ChatPageComp = () => {
 
   useEffect(() => {
     socket.current.emit("addUser", userId);
-    socket.current.on("getUsers", (users) => {
-      console.log(users);
-    })
+    // socket.current.on("getUsers", (users) => {
+    //   console.log(users);
+    // })
   }, [userId])
 
   useEffect(() => {
@@ -78,6 +80,7 @@ const ChatPageComp = () => {
         "x-auth-token": localStorage.getItem("token"),
       },
     };
+
     const message = {
       sender: userId,
       text: newMessage,
@@ -101,12 +104,27 @@ const ChatPageComp = () => {
     }
   }
 
+  const onChangeHandler = async (e) => {
+    const keyword = e.target.value;
+
+    await axios.get(`/api/conversation/search-users/${keyword}`, ProtectedApiConfig)
+      .then((resp) => setSearchRecord(resp.data))
+  }
+
   return (
     <>
       <div className="messenger">
         <div className="chatMenu">
           <div className="chatMenuWrapper">
-            <input placeholder="Search for friends" className="chatMenuInput" />
+            <Autocomplete
+              id="search"
+              freeSolo
+              // onChange={onSearchProductHandler}
+              options={searchRecord.map((option) => option.userName)}
+              renderInput={(params) => (
+                <TextFieldComp {...params} size="small" onChange={onChangeHandler} label="Search for friends" />
+              )}
+            />
             {
               conversations.map((v) => {
                 return <div onClick={() => setCurrentChat(v)}> <ConversationComp conversation={v} currentUserId={userId} /> </div>
@@ -122,7 +140,11 @@ const ChatPageComp = () => {
                   <div className="chatBoxTop">
                     {
                       messages.map((v) => {
-                        return <div ref={scrollRef}> <MessageComp message={v} own={v.sender === userId} /> </div>
+                        if (v.userImage) {
+                          return null;
+                        } else {
+                          return <div ref={scrollRef}> <MessageComp message={v} own={v.sender === userId} /> </div>
+                        }
                       })
                     }
                   </div>

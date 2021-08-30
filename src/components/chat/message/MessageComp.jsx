@@ -7,7 +7,7 @@ import altAvatar from "../../../assets/userAltAvatar.png";
 
 const MessageComp = ({ message, own }) => {
 
-  const [user, setUser] = useState();
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     const getUser = async () => {
