@@ -21,19 +21,23 @@ const ViewUserProfilePageComp = () => {
 
   const onMessageHandler = async () => {
 
-    const conversation = {
-      senderId: userId,
-      receiverId: id
+    if (userId) {
+      const conversation = {
+        senderId: userId,
+        receiverId: id
+      }
+
+      const ProtectedApi = {
+        headers: {
+          "x-auth-token": localStorage.getItem("token"),
+        },
+      };
+
+      await axios.post('/api/conversation/', conversation, ProtectedApi);
+      history.push("/user-messages")
+    } else {
+      history.push("/login")
     }
-
-    const ProtectedApi = {
-      headers: {
-        "x-auth-token": localStorage.getItem("token"),
-      },
-    };
-
-    await axios.post('/api/conversation/', conversation, ProtectedApi);
-    history.push("/user-messages")
 
   }
   return (

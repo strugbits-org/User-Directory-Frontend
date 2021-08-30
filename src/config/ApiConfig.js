@@ -18,7 +18,7 @@ export const ProtectedImageApiConfig = {
   },
 };
 
-export const backendURL = "https://6054-2400-adc1-1bd-5500-1813-1f8e-bf7e-6d31.ngrok.io";
+export const backendURL = "https://1beb-2400-adc1-41a-1000-6185-8f5-38b5-182b.ngrok.io";
 // export const Config = {
 //   headers: { "x-auth-token": localStorage.getItem("token") },
 // };

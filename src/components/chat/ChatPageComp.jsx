@@ -4,6 +4,7 @@ import "./ChatPageCompStyle.css";
 import ConversationComp from "./conversation/ConversationComp";
 import MessageComp from "./message/MessageComp";
 import axios from 'axios';
+import { io } from "socket.io-client";
 
 const ChatPageComp = () => {
 
@@ -12,7 +13,28 @@ const ChatPageComp = () => {
   const [currentChat, setCurrentChat] = useState();
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
+  const [arrivalMessage, setArrivalMessage] = useState('');
+  const socket = useRef();
   const scrollRef = useRef();
+
+  useEffect(() => {
+    socket.current = io("ws://localhost:8900");
+    socket.current.on("getMessage", (data) => {
+      console.log(data)
+      setArrivalMessage({
+        sender: data.senderId,
+        text: data.text,
+        createdAt: Date.now()
+      })
+    })
+  }, [socket])
+
+  useEffect(() => {
+    socket.current.emit("addUser", userId);
+    socket.current.on("getUsers", (users) => {
+      console.log(users);
+    })
+  }, [userId])
 
   useEffect(() => {
     const getConversations = async () => {
@@ -44,6 +66,11 @@ const ChatPageComp = () => {
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages])
 
+  useEffect(() => {
+    arrivalMessage && currentChat?.members.includes(arrivalMessage.sender) &&
+      setMessages((prev) => [...prev, arrivalMessage]);
+  }, [arrivalMessage, currentChat])
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const ProtectedApi = {
@@ -56,6 +83,15 @@ const ChatPageComp = () => {
       text: newMessage,
       conversationId: currentChat._id,
     }
+
+    const receiverId = currentChat.members.find((v) => v !== userId);
+
+    socket.current.emit("sendMessage", {
+      senderId: userId,
+      receiverId,
+      text: newMessage
+    })
+
     if (newMessage) {
       await axios.post('/api/message', message, ProtectedApi)
         .then((resp) => {
