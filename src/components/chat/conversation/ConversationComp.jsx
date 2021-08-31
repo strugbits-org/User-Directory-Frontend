@@ -9,7 +9,7 @@ const ConversationComp = ({ conversation, currentUserId }) => {
   const [user, setUser] = useState();
 
   useEffect(() => {
-    const friendId = conversation.members.find((v) => v !== currentUserId);
+    const friendId = conversation?.members.find((v) => v !== currentUserId);
 
     const getUser = async () => {
       await axios.get(`/api/user/user-profile/get-user/${friendId}`)

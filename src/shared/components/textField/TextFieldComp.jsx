@@ -16,6 +16,11 @@ const TextFieldComp = ({
   defaultValue,
   size,
   required,
+  value,
+  multiline,
+  rowsMax,
+  rows,
+  onKeyPress
 }) => {
 
   return (
@@ -34,6 +39,11 @@ const TextFieldComp = ({
       placeholder={placeholder}
       defaultValue={defaultValue}
       size={size}
+      value={value}
+      multiline={multiline}
+      rowsMax={rowsMax}
+      rows={rows}
+      onKeyPress={onKeyPress}
     />
   );
 };

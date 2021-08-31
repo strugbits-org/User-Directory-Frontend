@@ -4,6 +4,13 @@
   padding: 10px;
   cursor: pointer;
   margin-top: 20px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+  transition: box-shadow 0.3s;
+  border-top-left-radius: 28px;
+  border-bottom-left-radius: 28px;
+  border-top-right-radius: 28px;
+  border-bottom-right-radius: 28px;
+  width: 70%;
 }
 
 .conversation:hover {

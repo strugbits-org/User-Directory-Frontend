@@ -1,10 +1,12 @@
 .messenger {
-  height: calc(100vh - 70px);
+  height: 100vh;
   display: flex;
+  background-color: aquamarine;
 }
 
 .chatMenu {
   flex: 3;
+  margin-left: 20px;
 }
 
 .chatMenuInput {
@@ -15,7 +17,15 @@
 }
 
 .chatBox {
-  flex: 8;
+  flex: 5;
+  margin: 1% 0 1% 0%;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+  transition: box-shadow 0.3s;
+  background-color: #FFFAFA;
+  border-top-left-radius: 28px;
+  border-bottom-left-radius: 28px;
+  border-top-right-radius: 28px ;
+  border-bottom-right-radius: 28px;
 }
 
 .chatBoxWrapper {
@@ -23,6 +33,10 @@
   flex-direction: column;
   justify-content: space-between;
   position: relative;
+  margin-top: 1px;
+  /* background-color: #FFFAFA; */
+  padding: 0px 10px 10px 15px;
+  height: 87%;
 }
 
 .chatBoxTop {
@@ -32,7 +46,7 @@
 }
 
 .chatBoxBottom {
-  margin-top: 5px;
+  margin-top: 22px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -55,20 +69,25 @@
 }
 
 .chatOnline {
-  flex: 1;
+  flex: 4;
 }
 
-.chatMenuWrapper,
-.chatBoxWrapper,
+.chatMenuWrapper{
+  padding: 10px;
+  height: 65%;
+}
+
 .chatOnlineWrapper {
   padding: 10px;
-  height: 100%;
+  height: 93%;
 }
 
 .noConversationText {
   position: absolute;
-  top: 10%;
+  top: 44%;
   font-size: 50px;
+  padding: 0 60px 0 55px;
+  text-align: center;
   color: rgb(224, 220, 220);
   cursor: default;
 }
@@ -82,11 +101,41 @@
     display: none;
   }
 
-  .chatBox{
+  .chatBox {
     flex: 10;
   }
 
-  .chatOnline{
+  .chatOnline {
     flex: 1px;
   }
 }
+
+.chatBoxHeader {
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+  transition: box-shadow 0.3s;
+  /* margin: 2% 0 0% 0; */
+  padding: 2%;
+  display: flex;
+  /* width: 99%; */
+  justify-content: center;
+  border-top-left-radius: 28px;
+  border-top-right-radius: 28px ;
+}
+
+.chatBoxHeaderImg {
+  height: 60px;
+  border-radius: 50%;
+}
+
+.chatBoxHeaderTypo {
+  margin: 2% 0 0 5% !important;
+  font-weight: bold !important;
+  font-size: larger !important;
+}
+
+/* .searchField {
+  border-top-left-radius: 28px !important;
+  border-bottom-left-radius: 28px !important;
+  border-top-right-radius: 28px !important;
+  border-bottom-right-radius: 28px;
+} */
