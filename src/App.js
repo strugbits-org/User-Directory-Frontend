@@ -9,11 +9,13 @@ import ProtectedRoute from "./shared/components/protectedRoute/ProtectedRoute";
 import ViewUserProfilePageComp from "./components/viewUserProfile/ViewUserProfilePageComp";
 import UserListPageComp from "./components/userList/UserListPageComp";
 import ChatPageComp from "./components/chat/ChatPageComp";
+import AnimationComp from "./components/animation/AnimationComp";
 
 const App = () => {
   return (
     <Router>
       <Switch>
+        <Route exact path="/ani" component={AnimationComp} />
         <Route exact path="/" component={HomePageComp} />
         <Route exact path="/login" component={LoginPageComp} />
         <Route exact path="/register" component={RegisterPageComp} />

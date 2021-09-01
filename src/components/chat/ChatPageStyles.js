@@ -9,36 +9,40 @@ const useStyles = makeStyles({
       borderBottomRightRadius: "27px",
     },
   },
-  searchField: {
-    "& .MuiOutlinedInput-notchedOutline": {
-      borderTopLeftRadius: "27px",
-      borderBottomLeftRadius: "27px",
-      borderTopRightRadius: "27px",
-      borderBottomRightRadius: "27px",
+  autoComplete: {
+    marginLeft: '40px',
+    "& .MuiFormControl-fullWidth": {
+      backgroundColor: "rgba(255,255,255,0.3)",
     },
   },
-  rightUserProfileDiv: {
-    padding: "10px",
-    margin: "10%",
-    height: "50%",
-    boxShadow: "0 1px 5px rgba(0, 0, 0, 0.3)",
+  searchField: {
+    // "& .MuiOutlinedInput-notchedOutline": {
+    //   borderTopLeftRadius: "27px",
+    //   borderBottomLeftRadius: "27px",
+    //   borderTopRightRadius: "27px",
+    //   borderBottomRightRadius: "27px",
+    // },
+    "& .MuiAutocomplete-inputRoot .MuiAutocomplete-input": {
+      color: "white",
+      fontSize: "20px",
+    },
   },
   rightUserProfileImg: {
-    height: "100px",
+    height: "200px",
     borderRadius: "50%",
-    margin: "12% 0 0 37%",
+    margin: "16% 0 0 24%",
   },
   rightUserProfileText: {
-    margin: "20px 12px 0 0%",
+    margin: "25px 12px 0 3%",
+    textAlign: "center",
+  },
+  rightUserProfileSubText: {
+    margin: "10px 12px 0 3%",
     textAlign: "center",
   },
   convoActive: {
-    borderTopLeftRadius: "28px",
-    borderBottomLeftRadius: "28px",
-    borderTopRightRadius: "28px",
-    borderBottomRightRadius: "28px",
-    backgroundColor: "rgb(245, 243, 243)",
-    boxShadow: "0 1px 5px rgba(0, 0, 0, 0.3)",
+    backgroundColor: "rgba(245, 243, 243,0.3)",
+    // boxShadow: "0 1px 5px rgba(0, 0, 0, 0.3)",
   },
 });
 

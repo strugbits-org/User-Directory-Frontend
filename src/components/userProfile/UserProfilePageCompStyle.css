@@ -34,7 +34,6 @@ body {
   margin: 0;
   text-align: left;
   color: #525f7f;
-  /* background-color: #f8f9fe; */
 }
 
 .root {
@@ -142,11 +141,6 @@ label {
 
 button {
   border-radius: 0;
-}
-
-button:focus {
-  /* outline: 1px dotted;
-  outline: 5px auto -webkit-focus-ring-color; */
 }
 
 input,

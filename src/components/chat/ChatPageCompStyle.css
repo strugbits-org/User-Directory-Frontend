@@ -1,12 +1,17 @@
 .messenger {
-  height: 100vh;
+  height: 91vh;
   display: flex;
-  background-image: linear-gradient(to bottom,#e2e2e2 ,#909090);
+  margin: 40px 10px 0px 170px;
+  /* background-image: linear-gradient(to bottom,#e2e2e2 ,#909090); */
 }
 
 .chatMenu {
   flex: 3;
-  margin-left: 20px;
+  background-color: #1877f2;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
 }
 
 .chatMenuInput {
@@ -18,14 +23,10 @@
 
 .chatBox {
   flex: 5;
-  margin: 1% 0 1% 0%;
+  margin: 7px 0 7px 0%;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
   transition: box-shadow 0.3s;
-  background-color: #fffafa;
-  border-top-left-radius: 28px;
-  border-bottom-left-radius: 28px;
-  border-top-right-radius: 28px;
-  border-bottom-right-radius: 28px;
+  background-color: #fdf9f9;
 }
 
 .chatBoxWrapper {
@@ -73,13 +74,15 @@
 }
 
 .chatMenuWrapper {
-  padding: 10px;
+  padding: 10px 0 10px 0;
   height: 65%;
 }
 
 .chatOnlineWrapper {
-  padding: 10px;
-  height: 93%;
+  margin: 7px 0 0 0;
+  height: 868px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+  width: 70%;
 }
 
 .noConversationText {
@@ -111,22 +114,21 @@
 }
 
 .chatBoxHeader {
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
   transition: box-shadow 0.3s;
-  padding: 2%;
+  padding: 1%;
   display: flex;
-  justify-content: center;
-  border-top-left-radius: 28px;
-  border-top-right-radius: 28px;
+  /* justify-content: center; */
 }
 
 .chatBoxHeaderImg {
-  height: 60px;
+  height: 10px;
   border-radius: 50%;
+  margin: 22px 0 0 30px;
 }
 
 .chatBoxHeaderTypo {
-  margin: 2% 0 0 5% !important;
+  margin: 3px 0 0 10px !important;
   font-weight: bold !important;
-  font-size: larger !important;
+  font-size: 33px !important;
 }

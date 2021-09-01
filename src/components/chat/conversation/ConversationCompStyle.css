@@ -3,29 +3,30 @@
   align-items: center;
   padding: 10px;
   cursor: pointer;
-  margin-top: 20px;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
-  transition: box-shadow 0.3s;
-  border-top-left-radius: 28px;
+  /* margin-top: 2px; */
+  /* box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+  transition: box-shadow 0.3s; */
+  /* border-top-left-radius: 28px;
   border-bottom-left-radius: 28px;
   border-top-right-radius: 28px;
-  border-bottom-right-radius: 28px;
+  border-bottom-right-radius: 28px; */
 }
 
 .conversation:hover {
-  background-color: rgb(245, 243, 243);
+  background-color: rgba(245, 243, 243,0.3);
 }
 
 .conversationImg {
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   object-fit: cover;
-  margin-right: 20px;
+  margin: 0 20px 0 20px;
 }
 
 .conversationName {
   font-weight: 500;
+  color: white;
 }
 
 @media screen and (max-width: 768px) {

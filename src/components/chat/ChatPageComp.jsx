@@ -12,13 +12,15 @@ import { InputAdornment, IconButton } from "@material-ui/core";
 import SendIcon from '@material-ui/icons/Send';
 import SearchIcon from '@material-ui/icons/Search';
 import useStyles from './ChatPageStyles';
+import onlineImage from "../../assets/online.png"
+import locationImage from "../../assets/location.png"
+import mailImage from "../../assets/mail.png"
 
 const ChatPageComp = () => {
 
   const socket = useRef();
   const scrollRef = useRef();
   const classes = useStyles();
-  const [userDetails, setUserDetails] = useState();
   const userId = localStorage.getItem('userId');
   const [conversations, setConversations] = useState([]);
   const [currentChat, setCurrentChat] = useState();
@@ -45,17 +47,6 @@ const ChatPageComp = () => {
     // socket.current.on("getUsers", (users) => {
     //   console.log(users);
     // })
-    const getUserProfile = async () => {
-      const ProtectedApi = {
-        headers: {
-          "x-auth-token": localStorage.getItem("token"),
-        },
-      };
-
-      await axios.get('/api/user/user-profile/', ProtectedApi)
-        .then((resp) => setUserDetails(resp.data));
-    }
-    getUserProfile();
   }, [userId]);
 
   useEffect(() => {
@@ -156,21 +147,22 @@ const ChatPageComp = () => {
     <div className="messenger">
       <div className="chatMenu">
         <div style={{ margin: '10% 0 0% 5%', height: '10%', }}>
-          <Typography variant="h2"> Chats </Typography>
+          <Typography variant="h3" style={{ color: 'white', fontFamily: 'emoji' }}> Messages </Typography>
         </div>
         <div className="chatMenuWrapper">
           <Autocomplete
             id="search"
             freeSolo
             style={{ marginBottom: '13%' }}
+            className={classes.autoComplete}
             onChange={onSearchHandler}
             options={searchRecord.map((option) => option.userName)}
             renderInput={(params) => (
               <TextFieldComp
                 {...params}
-                label="Search for friends"
                 variant="outlined"
-                style={{ width: '70%' }}
+                style={{ width: '80%' }}
+                placeholder="Search here...."
                 size="small"
                 className={classes.searchField}
                 onChange={onChangeHandler}
@@ -179,7 +171,7 @@ const ChatPageComp = () => {
                   startAdornment: (
                     <InputAdornment position="start">
                       <IconButton style={{ marginLeft: '0%' }}>
-                        {<SearchIcon />}
+                        {<SearchIcon style={{ color: 'white', fontSize: '35px' }} />}
                       </IconButton>
                     </InputAdornment>
                   )
@@ -191,7 +183,6 @@ const ChatPageComp = () => {
             conversations.map((v) => {
               return <div
                 className={v._id === currentChat?._id ? classes.convoActive : null}
-                style={{ width: '70%' }}
                 onClick={() => setCurrentChat(v)}>
                 <ConversationComp conversation={v} currentUserId={userId} />
               </div>
@@ -203,8 +194,9 @@ const ChatPageComp = () => {
         {
           currentChat ?
             <div className="chatBoxHeader">
-              <img alt="user avatar" className="chatBoxHeaderImg"
-                src={userId !== usersImages?.user1Id ? usersImages?.user1Image : usersImages?.user2Image} />
+              {/* <img alt="user avatar" className="chatBoxHeaderImg"
+                src={userId !== usersImages?.user1Id ? usersImages?.user1Image : usersImages?.user2Image} /> */}
+              <img alt="online" src={onlineImage} className="chatBoxHeaderImg" />
               <Typography className="chatBoxHeaderTypo">
                 {userId !== usersImages?.user1Id ? usersImages?.user1Name : usersImages?.user2Name}
               </Typography>
@@ -258,24 +250,32 @@ const ChatPageComp = () => {
         </div>
       </div>
       <div className="chatOnline">
-        <div className="chatOnlineWrapper">
-          <div className={classes.rightUserProfileDiv}>
-            <img alt="user avatar" className={classes.rightUserProfileImg}
-              src={userDetails?.userImage} />
-            <Typography variant="h4" className={classes.rightUserProfileText}>
-              {userDetails?.firstName} {userDetails?.lastName}
-            </Typography>
-            <Typography variant="h6" className={classes.rightUserProfileText}>
-              {userDetails?.employment}
-            </Typography>
-            <Typography variant="h6" className={classes.rightUserProfileText}>
-              {userDetails?.city}, {userDetails?.country}
-            </Typography>
-            <Typography className={classes.rightUserProfileText}>
-              {userDetails?.aboutMe}
-            </Typography>
-          </div>
-        </div>
+        {
+          currentChat ?
+            <div className="chatOnlineWrapper">
+              <img alt="user avatar" className={classes.rightUserProfileImg}
+                src={userId !== usersImages?.user1Id ? usersImages?.user1Image : usersImages?.user2Image} />
+              <Typography variant="h3" className={classes.rightUserProfileText}>
+                {userId !== usersImages?.user1Id ? usersImages?.user1Name : usersImages?.user2Name}
+              </Typography>
+              <Typography className={classes.rightUserProfileSubText}>
+                {userId !== usersImages?.user1Id ? usersImages?.user1Employment : usersImages?.user2Employment}
+              </Typography>
+              <div style={{ padding: '35px 0 0 35px', marginTop: '25px', display: 'flex' }}>
+                <img alt="location" src={locationImage} style={{ height: '40px' }} />
+                <Typography variant="h6" style={{ margin: '4px 0 0 3%' }}>
+                  {userId !== usersImages?.user1Id ? usersImages?.user1Location : usersImages?.user2Location}
+                </Typography>
+              </div>
+              <div style={{ padding: '0 0 0 40px', marginTop: '15px', display: 'flex' }}>
+                <img alt="location" src={mailImage} style={{ marginTop: '4px', height: '25px' }} />
+                <Typography variant="h6" style={{ margin: '0 0 0 20px' }}>
+                  {userId !== usersImages?.user1Id ? usersImages?.user1Email : usersImages?.user2Email}
+                </Typography>
+              </div>
+            </div>
+            : null
+        }
       </div>
     </div>
   );
