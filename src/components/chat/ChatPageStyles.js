@@ -32,6 +32,14 @@ const useStyles = makeStyles({
     margin: "20px 12px 0 0%",
     textAlign: "center",
   },
+  convoActive: {
+    borderTopLeftRadius: "28px",
+    borderBottomLeftRadius: "28px",
+    borderTopRightRadius: "28px",
+    borderBottomRightRadius: "28px",
+    backgroundColor: "rgb(245, 243, 243)",
+    boxShadow: "0 1px 5px rgba(0, 0, 0, 0.3)",
+  },
 });
 
 export default useStyles;

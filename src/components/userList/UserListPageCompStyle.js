@@ -13,9 +13,6 @@ const useStyles = makeStyles(() => ({
   listHeader: {
     margin: "0 0 0 15%",
   },
-  fieldWidth: {
-    // width: '62%',
-  },
 }));
 
 export default useStyles;

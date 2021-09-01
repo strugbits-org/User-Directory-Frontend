@@ -109,7 +109,6 @@ const UserListPageComp = () => {
             </Grid>
             <Grid item xs={1}>
               <TextFieldComp
-                className={classes.fieldWidth}
                 label="Name"
                 name="name"
                 variant="outlined"
@@ -118,7 +117,6 @@ const UserListPageComp = () => {
             </Grid>
             <Grid item xs={1}>
               <TextFieldComp
-                className={classes.fieldWidth}
                 label="University"
                 name="university"
                 variant="outlined"

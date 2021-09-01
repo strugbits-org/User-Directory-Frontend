@@ -50,7 +50,6 @@ const useStyles = makeStyles({
     cursor: "pointer",
   },
   cardFooter: {
-    // backgroundColor: '#4350a5',
     height: "70px",
     display: "flex",
     paddingTop: "5%",

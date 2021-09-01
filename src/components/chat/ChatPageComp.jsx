@@ -189,7 +189,12 @@ const ChatPageComp = () => {
           />
           {
             conversations.map((v) => {
-              return <div onClick={() => setCurrentChat(v)}> <ConversationComp conversation={v} currentUserId={userId} /> </div>
+              return <div
+                className={v._id === currentChat?._id ? classes.convoActive : null}
+                style={{ width: '70%' }}
+                onClick={() => setCurrentChat(v)}>
+                <ConversationComp conversation={v} currentUserId={userId} />
+              </div>
             })
           }
         </div>
@@ -228,7 +233,6 @@ const ChatPageComp = () => {
                     variant="outlined"
                     multiline={true}
                     className={classes.typeMsg}
-                    // rows={3}
                     rowsMax="3"
                     onKeyPress={(e) => {
                       if (e.key === 'Enter') {

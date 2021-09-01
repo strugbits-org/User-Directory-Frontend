@@ -1,7 +1,7 @@
 .messenger {
   height: 100vh;
   display: flex;
-  background-color: aquamarine;
+  background-image: linear-gradient(to bottom,#e2e2e2 ,#909090);
 }
 
 .chatMenu {
@@ -21,10 +21,10 @@
   margin: 1% 0 1% 0%;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
   transition: box-shadow 0.3s;
-  background-color: #FFFAFA;
+  background-color: #fffafa;
   border-top-left-radius: 28px;
   border-bottom-left-radius: 28px;
-  border-top-right-radius: 28px ;
+  border-top-right-radius: 28px;
   border-bottom-right-radius: 28px;
 }
 
@@ -72,7 +72,7 @@
   flex: 4;
 }
 
-.chatMenuWrapper{
+.chatMenuWrapper {
   padding: 10px;
   height: 65%;
 }
@@ -113,13 +113,11 @@
 .chatBoxHeader {
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
   transition: box-shadow 0.3s;
-  /* margin: 2% 0 0% 0; */
   padding: 2%;
   display: flex;
-  /* width: 99%; */
   justify-content: center;
   border-top-left-radius: 28px;
-  border-top-right-radius: 28px ;
+  border-top-right-radius: 28px;
 }
 
 .chatBoxHeaderImg {
@@ -132,10 +130,3 @@
   font-weight: bold !important;
   font-size: larger !important;
 }
-
-/* .searchField {
-  border-top-left-radius: 28px !important;
-  border-bottom-left-radius: 28px !important;
-  border-top-right-radius: 28px !important;
-  border-bottom-right-radius: 28px;
-} */

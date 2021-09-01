@@ -2,9 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { countryList } from '../../shared/data/CountryList';
 import "./UserProfilePageCompStyle.css";
 import axios from 'axios';
-// import {
-//   ProtectedImageApiConfig, ProtectedApiConfig
-// } from '../../config/ApiConfig';
 import SnackBarComp from '../../shared/components/snackBar/SnackBarComp';
 import AddAndDisplayImageComp from '../../shared/components/addAndDisplayImage/AddAndDisplayImageComp';
 import { backendURL } from '../../config/ApiConfig';
@@ -85,17 +82,6 @@ const UserProfilePageComp = () => {
           <div className="container-fluid">
             {/* <!-- Brand --> */}
             <a className="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="/user-profile">User profile</a>
-            {/* <!-- Form --> */}
-            {/* <form className="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
-              <div className="form-group mb-0">
-                <div className="input-group input-group-alternative">
-                  <div className="input-group-prepend">
-                    <span className="input-group-text"><i className="fas fa-search"></i></span>
-                  </div>
-                  <input className="form-control" placeholder="Search" type="text" />
-                </div>
-              </div>
-            </form> */}
             {/* <!-- User --> */}
             <ul className="navbar-nav align-items-center d-none d-md-flex">
               <li className="nav-item dropdown">
@@ -150,7 +136,6 @@ const UserProfilePageComp = () => {
               <div className="col-lg-7 col-md-10">
                 <h1 className="display-2 text-white">Hello {localStorage.getItem('name')}</h1>
                 <p className="text-white mt-0 mb-5">This is your profile page. You can see the progress you've made with your work and manage your projects or assigned tasks</p>
-                {/* <a href="/user-profile" className="btn btn-info">Edit profile</a> */}
               </div>
             </div>
           </div>
@@ -170,10 +155,6 @@ const UserProfilePageComp = () => {
                   </div>
                 </div>
                 <div className="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
-                  <div className="d-flex justify-content-between">
-                    <a href="/user-profile" className="btn btn-sm btn-info mr-4">Connect</a>
-                    <a href="/user-profile" className="btn btn-sm btn-default float-right">Message</a>
-                  </div>
                 </div>
                 <div className="card-body pt-0 pt-md-4">
                   <div className="row">
